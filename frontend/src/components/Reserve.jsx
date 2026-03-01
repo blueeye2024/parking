@@ -83,11 +83,14 @@ const Reserve = () => {
                     { label: '무료 셔틀 운행', value: '07:00 ~ 22:00', unit: '' },
                     { label: '공항까지 소요시간', value: '7', unit: '분' },
                 ].map((item, i) => (
-                    <div key={i} className={`bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${item.highlight ? 'border-t-4 border-t-brand ring-1 ring-brand/10' : 'border-t-4 border-t-slate-200'}`}>
-                        <p className="text-sm font-medium text-slate-500 mb-2">{item.label}</p>
-                        <p className="text-3xl font-extrabold text-slate-900">
+                    <div key={i} className={`group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center cursor-default
+                        hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.25)] hover:-translate-y-2 hover:scale-[1.03] hover:border-brand/30
+                        transition-all duration-300 ease-out
+                        ${item.highlight ? 'border-t-4 border-t-brand ring-1 ring-brand/10' : 'border-t-4 border-t-slate-200'}`}>
+                        <p className="text-sm font-medium text-slate-500 mb-2 group-hover:text-brand transition-colors duration-300">{item.label}</p>
+                        <p className="text-3xl font-extrabold text-slate-900 group-hover:text-brand-dark transition-colors duration-300">
                             {item.value}
-                            {item.unit && <span className="text-lg font-semibold text-slate-500 ml-1">{item.unit}</span>}
+                            {item.unit && <span className="text-lg font-semibold text-slate-500 ml-1 group-hover:text-brand transition-colors duration-300">{item.unit}</span>}
                         </p>
                     </div>
                 ))}
@@ -101,8 +104,8 @@ const Reserve = () => {
 
                 {status.message && (
                     <div className={`p-4 rounded-xl mb-6 flex items-center gap-2 text-sm font-medium ${status.type === 'success'
-                            ? 'bg-emerald-50 border border-emerald-200 text-emerald-700'
-                            : 'bg-orange-50 border border-orange-200 text-orange-600'
+                        ? 'bg-emerald-50 border border-emerald-200 text-emerald-700'
+                        : 'bg-orange-50 border border-orange-200 text-orange-600'
                         }`}>
                         {status.message}
                     </div>
