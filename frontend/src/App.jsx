@@ -74,7 +74,7 @@ function App() {
       </main>
       <footer className="footer">
         <p>&copy; {(new Date().getFullYear())} 청주공항 반값 셔틀 주차장. All rights reserved.</p>
-        <p style={{ fontSize: '0.85rem', color: 'var(--text-light)', marginTop: '0.5rem' }}>Ver 1.4.1 | Last Updated: 2026.03.01</p>
+        <p style={{ fontSize: '0.85rem', color: 'var(--text-light)', marginTop: '0.5rem' }}>Ver 1.4.2 | Last Updated: 2026.03.01</p>
       </footer>
     </Router>
   );

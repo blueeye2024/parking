@@ -108,22 +108,19 @@ const Admin = () => {
                     <FaUserShield style={{ marginRight: '10px' }} />
                     예약 관리 대시보드
                 </h2>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <button
+                <div style={{ display: 'flex', gap: '15px' }}>
+                    <span
                         onClick={() => fetchReservations(localStorage.getItem('adminToken'))}
-                        className="btn"
-                        style={{ backgroundColor: 'var(--text-light)', color: 'white', padding: '0.5rem 1rem' }}
-                        disabled={loading}
+                        style={{ color: 'var(--primary-color)', cursor: 'pointer', fontWeight: 'bold' }}
                     >
                         <FaRedo /> 새로고침
-                    </button>
-                    <button
+                    </span>
+                    <span
                         onClick={handleLogout}
-                        className="btn"
-                        style={{ backgroundColor: 'var(--error-color)', color: 'white', padding: '0.5rem 1rem' }}
+                        style={{ color: 'var(--text-light)', cursor: 'pointer', fontWeight: 'bold' }}
                     >
                         <FaSignOutAlt /> 로그아웃
-                    </button>
+                    </span>
                 </div>
             </div>
 
@@ -149,21 +146,20 @@ const Admin = () => {
                         <tbody>
                             {reservations.map((res) => (
                                 <tr key={res.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                                    <td style={{ padding: '1rem' }}>#{res.id}</td>
-                                    <td style={{ padding: '1rem' }}>
-                                        <strong>{res.name}</strong><br />
-                                        <span style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>{res.phone}</span>
+                                    <td style={{ padding: '1rem', whiteSpace: 'nowrap' }}>#{res.id}</td>
+                                    <td style={{ padding: '1rem', whiteSpace: 'nowrap' }}>
+                                        <strong>{res.name}</strong> <span style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>({res.phone})</span>
                                     </td>
-                                    <td style={{ padding: '1rem' }}>
-                                        {res.car_type}<br />
-                                        <strong>{res.car_number}</strong>
+                                    <td style={{ padding: '1rem', whiteSpace: 'nowrap' }}>
+                                        {res.car_type} / <strong>{res.car_number}</strong>
                                     </td>
-                                    <td style={{ padding: '1rem', fontSize: '0.95rem' }}>
-                                        <div style={{ color: 'var(--primary-color)' }}>입고: {new Date(res.drop_off_time).toLocaleString('ko-KR')}</div>
-                                        <div>출고: {new Date(res.pick_up_time).toLocaleString('ko-KR')}</div>
+                                    <td style={{ padding: '1rem', fontSize: '0.95rem', whiteSpace: 'nowrap' }}>
+                                        <span style={{ color: 'var(--primary-color)' }}>입고: {new Date(res.drop_off_time).toLocaleString('ko-KR')}</span>
+                                        <span style={{ margin: '0 8px', color: '#ccc' }}>|</span>
+                                        <span>출고: {new Date(res.pick_up_time).toLocaleString('ko-KR')}</span>
                                     </td>
-                                    <td style={{ padding: '1rem', fontSize: '0.9rem', maxWidth: '150px' }}>{res.memo || '-'}</td>
-                                    <td style={{ padding: '1rem', fontSize: '0.85rem', color: 'var(--text-light)' }}>
+                                    <td style={{ padding: '1rem', fontSize: '0.9rem', maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{res.memo || '-'}</td>
+                                    <td style={{ padding: '1rem', fontSize: '0.85rem', color: 'var(--text-light)', whiteSpace: 'nowrap' }}>
                                         {new Date(res.created_at).toLocaleString('ko-KR')}
                                     </td>
                                 </tr>
