@@ -4,6 +4,7 @@ import { FaUserShield, FaSignOutAlt, FaRedo, FaTrash } from 'react-icons/fa';
 
 const Admin = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState('');
 
@@ -25,15 +26,16 @@ const Admin = () => {
         setLoginError('');
         try {
             // Typically /api/admin/login in production setup
-            const response = await axios.post((import.meta.env.VITE_API_BASE_URL || '') + '/api/admin/login', { password });
+            const response = await axios.post((import.meta.env.VITE_API_BASE_URL || '') + '/api/admin/login', { username, password });
             if (response.data.success) {
                 // Use password as token for simple setup
-                localStorage.setItem('adminToken', password);
+                const token = `${username}:${password}`;
+                localStorage.setItem('adminToken', token);
                 setIsAuthenticated(true);
-                fetchReservations(password);
+                fetchReservations(token);
             }
         } catch (err) {
-            setLoginError(err.response?.data?.error || '로그인에 실패했습니다. 비밀번호를 확인해주세요.');
+            setLoginError(err.response?.data?.error || '로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.');
         }
     };
 
@@ -71,10 +73,20 @@ const Admin = () => {
                 <FaUserShield size={48} color="var(--primary-color)" style={{ marginBottom: '1rem' }} />
                 <h2 className="page-title">관리자 로그인</h2>
                 <form onSubmit={handleLogin}>
+                    <div className="form-group" style={{ marginBottom: '1rem' }}>
+                        <input
+                            type="text"
+                            placeholder="관리자 계정 아이디"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="form-control"
+                            required
+                        />
+                    </div>
                     <div className="form-group">
                         <input
                             type="password"
-                            placeholder="관리자 인증 비밀번호"
+                            placeholder="관리자 계정 비밀번호"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="form-control"

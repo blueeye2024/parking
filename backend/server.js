@@ -145,28 +145,51 @@ app.post('/api/reservations/check', async (req, res) => {
 });
 
 // POST /api/admin/login - Admin Login
-app.post('/api/admin/login', (req, res) => {
-  const { password } = req.body;
-  const ADMIN_PASSWORD = process.env.DB_PASSWORD || 'blueeye0037!'; // Using DB password as default admin password if not specified
+app.post('/api/admin/login', async (req, res) => {
+  const { username, password } = req.body;
 
-  if (password === ADMIN_PASSWORD) {
-    res.status(200).json({ success: true, message: 'Login successful' });
-  } else {
-    res.status(401).json({ success: false, error: 'Invalid password' });
+  if (!username || !password) {
+    return res.status(400).json({ success: false, error: 'Username and password are required' });
+  }
+
+  try {
+    const query = 'SELECT * FROM admins WHERE username = ? AND password = ?';
+    const [rows] = await pool.execute(query, [username, password]);
+
+    if (rows.length > 0) {
+      res.status(200).json({ success: true, message: 'Login successful' });
+    } else {
+      res.status(401).json({ success: false, error: 'Invalid username or password' });
+    }
+  } catch (err) {
+    console.error('Error logging in admin:', err);
+    res.status(500).json({ success: false, error: 'Internal server error' });
   }
 });
 
 // GET /api/admin/reservations - Get all reservations
-// Minimal protection for Phase 1. Client sends password in header.
 app.get('/api/admin/reservations', async (req, res) => {
   const authHeader = req.headers.authorization;
-  const ADMIN_PASSWORD = process.env.DB_PASSWORD || 'blueeye0037!';
 
-  if (!authHeader || authHeader !== `Bearer ${ADMIN_PASSWORD}`) {
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ error: 'Unauthorized access' });
   }
 
+  const token = authHeader.split(' ')[1];
+  const [username, password] = token.split(':');
+
+  if (!username || !password) {
+    return res.status(401).json({ error: 'Invalid token format' });
+  }
+
   try {
+    const adminQuery = 'SELECT * FROM admins WHERE username = ? AND password = ?';
+    const [adminRows] = await pool.execute(adminQuery, [username, password]);
+
+    if (adminRows.length === 0) {
+      return res.status(401).json({ error: 'Unauthorized credentials' });
+    }
+
     const query = 'SELECT * FROM reservations ORDER BY created_at DESC';
     const [rows] = await pool.execute(query);
 
