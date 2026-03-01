@@ -11,7 +11,7 @@ const AboutUs = () => {
             </p>
 
             <div style={{ marginBottom: '2.5rem' }}>
-                <h3 style={{ color: 'var(--primary-color)', marginBottom: '1rem' }}>서비스 소개 (About Us)</h3>
+                <h3 className="section-title" style={{ color: 'var(--primary-color)', marginBottom: '1rem' }}>서비스 소개 (About Us)</h3>
                 <p style={{ lineHeight: '1.6' }}>
                     청주국제공항의 고질적인 주차난으로 여행 전부터 스트레스 받으셨나요?
                 </p>
@@ -22,7 +22,7 @@ const AboutUs = () => {
             </div>
 
             <div style={{ marginBottom: '2.5rem' }}>
-                <h3 style={{ color: 'var(--primary-color)', marginBottom: '1rem' }}>핵심 장점 (Key Features)</h3>
+                <h3 className="section-title" style={{ color: 'var(--primary-color)', marginBottom: '1rem' }}>핵심 장점 (Key Features)</h3>
                 <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
                     <li style={{ marginBottom: '1rem', display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                         <FaTag style={{ color: 'var(--primary-color)', marginTop: '4px', flexShrink: 0 }} size={20} />
@@ -56,8 +56,8 @@ const AboutUs = () => {
                 </ul>
             </div>
 
-            <div style={{ marginBottom: '2.5rem', backgroundColor: '#f8f9fa', padding: '1.5rem', borderRadius: '8px' }}>
-                <h3 style={{ color: 'var(--text-color)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ marginBottom: '2.5rem', backgroundColor: 'var(--surface-color)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+                <h3 className="section-title" style={{ color: 'var(--text-color)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <FaHandshake color="var(--primary-color)" /> 믿고 맡길 수 있는 든든한 파트너
                 </h3>
                 <p style={{ fontStyle: 'italic', color: 'var(--text-light)' }}>
@@ -66,7 +66,7 @@ const AboutUs = () => {
             </div>
 
             <div>
-                <h3 style={{ color: 'var(--primary-color)', marginBottom: '1rem' }}>이용 안내 (Information)</h3>
+                <h3 className="section-title" style={{ color: 'var(--primary-color)', marginBottom: '1rem' }}>이용 안내 (Information)</h3>
                 <ul style={{ listStyle: 'none', paddingLeft: 0, marginBottom: '1.5rem' }}>
                     <li style={{ marginBottom: '0.5rem' }}><strong>위치:</strong> 충북 청주시 청원구 외남동 76-1 (청주공항 7분 거리)</li>
                     <li style={{ marginBottom: '0.5rem' }}><strong>이용 요금:</strong> 1일 5,000원 (정찰제)</li>

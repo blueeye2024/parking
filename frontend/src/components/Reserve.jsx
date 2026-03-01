@@ -63,80 +63,86 @@ const Reserve = () => {
             )}
 
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label className="form-label">차량종류</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="car_type"
-                        value={formData.car_type}
-                        onChange={handleChange}
-                        placeholder="예: 소나타, 산타페"
-                        required
-                    />
+                <div className="form-row">
+                    <div className="form-group">
+                        <label className="form-label">차량종류</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="car_type"
+                            value={formData.car_type}
+                            onChange={handleChange}
+                            placeholder="예: 소나타, 산타페"
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label className="form-label">차량번호</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="car_number"
+                            value={formData.car_number}
+                            onChange={handleChange}
+                            placeholder="예: 12가 3456"
+                            required
+                        />
+                    </div>
                 </div>
 
-                <div className="form-group">
-                    <label className="form-label">차량번호</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="car_number"
-                        value={formData.car_number}
-                        onChange={handleChange}
-                        placeholder="예: 12가 3456"
-                        required
-                    />
+                <div className="form-row">
+                    <div className="form-group">
+                        <label className="form-label">예약자명</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="이름을 입력해주세요"
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label className="form-label">연락처</label>
+                        <input
+                            type="tel"
+                            className="form-control"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            placeholder="예: 010-1234-5678"
+                            required
+                        />
+                    </div>
                 </div>
 
-                <div className="form-group">
-                    <label className="form-label">예약자명</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="이름을 입력해주세요"
-                        required
-                    />
-                </div>
+                <div className="form-row">
+                    <div className="form-group">
+                        <label className="form-label">차량 맡기는 시간</label>
+                        <input
+                            type="datetime-local"
+                            className="form-control"
+                            name="drop_off_time"
+                            value={formData.drop_off_time}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <label className="form-label">연락처</label>
-                    <input
-                        type="tel"
-                        className="form-control"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="예: 010-1234-5678"
-                        required
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label className="form-label">차량 맡기는 시간</label>
-                    <input
-                        type="datetime-local"
-                        className="form-control"
-                        name="drop_off_time"
-                        value={formData.drop_off_time}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label className="form-label">차량 찾는 시간</label>
-                    <input
-                        type="datetime-local"
-                        className="form-control"
-                        name="pick_up_time"
-                        value={formData.pick_up_time}
-                        onChange={handleChange}
-                        required
-                    />
+                    <div className="form-group">
+                        <label className="form-label">차량 찾는 시간</label>
+                        <input
+                            type="datetime-local"
+                            className="form-control"
+                            name="pick_up_time"
+                            value={formData.pick_up_time}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
                 </div>
 
                 <div className="form-group">

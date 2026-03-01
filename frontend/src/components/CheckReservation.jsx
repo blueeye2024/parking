@@ -59,30 +59,32 @@ const CheckReservation = () => {
 
             {!reservation ? (
                 <form onSubmit={handleCheck}>
-                    <div className="form-group">
-                        <label className="form-label">연락처</label>
-                        <input
-                            type="tel"
-                            className="form-control"
-                            name="phone"
-                            value={credentials.phone}
-                            onChange={handleChange}
-                            placeholder="예: 010-1234-5678"
-                            required
-                        />
-                    </div>
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label className="form-label">연락처</label>
+                            <input
+                                type="tel"
+                                className="form-control"
+                                name="phone"
+                                value={credentials.phone}
+                                onChange={handleChange}
+                                placeholder="예: 010-1234-5678"
+                                required
+                            />
+                        </div>
 
-                    <div className="form-group">
-                        <label className="form-label">비밀번호</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            value={credentials.password}
-                            onChange={handleChange}
-                            placeholder="예약 시 입력한 비밀번호"
-                            required
-                        />
+                        <div className="form-group">
+                            <label className="form-label">비밀번호</label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                name="password"
+                                value={credentials.password}
+                                onChange={handleChange}
+                                placeholder="예약 시 입력한 비밀번호"
+                                required
+                            />
+                        </div>
                     </div>
 
                     <button type="submit" className="btn-primary" disabled={loading}>
