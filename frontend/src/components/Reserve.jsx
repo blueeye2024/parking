@@ -56,7 +56,7 @@ const Reserve = () => {
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80")' }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-brand-dark/30 to-brand/20" />
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-brand-dark/50 to-brand/40" />
 
                 {/* Content */}
                 <div className="relative z-10 max-w-2xl mx-auto space-y-6">
