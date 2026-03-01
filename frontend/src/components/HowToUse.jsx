@@ -1,59 +1,67 @@
 import React from 'react';
 import { FaCalendarCheck, FaCarSide, FaPlaneDeparture } from 'react-icons/fa';
 
+const steps = [
+    {
+        num: '1',
+        icon: FaCalendarCheck,
+        title: '온라인 예약',
+        desc: '저희 청주공항 반값셔틀주차장 웹사이트에서 차량 정보와 여정 일정을 입력하여 빠르고 쉽게 주차 대행 예약을 합니다.',
+    },
+    {
+        num: '2',
+        icon: FaCarSide,
+        title: '지정 장소 방문',
+        desc: '출국 당일, 예약하신 시간에 맞추어 저희 주차장에 방문하시거나 지정된 미팅 장소에서 차량을 인계해 주세요.',
+    },
+    {
+        num: '3',
+        icon: FaPlaneDeparture,
+        title: '공항 이동 및 출국',
+        desc: '저희가 제공하는 무료 셔틀 서비스를 통해 청주공항 출국장까지 편안하게 이동하신 후 즐거운 여행을 떠나세요!',
+    },
+    {
+        num: '4',
+        icon: FaCarSide,
+        title: '귀국 후 차량 인수',
+        desc: '청주공항에 도착하신 후 연락주시면, 셔틀로 주차장까지 모시거나 게이트에서 바로 차량을 인수받을 수 있도록 준비해 드립니다.',
+        flipIcon: true,
+    },
+];
+
 const HowToUse = () => {
     return (
-        <div className="card">
-            <h2 className="page-title">이용 방법 안내</h2>
+        <div className="animate-fade-in py-8">
+            <div className="text-center mb-10">
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">이용 방법 안내</h2>
+                <p className="text-slate-500 mt-2 text-sm">간단한 4단계로 편리하게 이용하세요</p>
+            </div>
 
-            <div style={{ marginTop: '2rem' }}>
-                <div className="instruction-step" style={{ background: 'var(--surface-color)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-                    <div className="step-number" style={{ backgroundColor: 'var(--primary-color)' }}>1</div>
-                    <div className="step-content" style={{ width: '100%' }}>
-                        <h3 style={{ color: 'var(--text-color)', fontSize: '1.25rem', display: 'flex', alignItems: 'center' }}>
-                            온라인 예약 <FaCalendarCheck style={{ color: 'var(--primary-hover)', marginLeft: '8px' }} />
-                        </h3>
-                        <p style={{ marginTop: '0.5rem', color: 'var(--text-light)' }}>
-                            저희 <strong>청주공항 반값셔틀주차장</strong> 웹사이트에서 차량 정보와 여정 일정을 입력하여 빠르고 쉽게 주차 대행 예약을 합니다.
-                        </p>
-                    </div>
-                </div>
+            <div className="space-y-5 max-w-3xl mx-auto">
+                {steps.map((step, i) => {
+                    const Icon = step.icon;
+                    return (
+                        <div
+                            key={i}
+                            className="bg-white rounded-2xl p-6 shadow-sm ring-1 ring-slate-100 flex items-start gap-5 hover:shadow-md transition-shadow duration-300"
+                            style={{ animationDelay: `${i * 100}ms` }}
+                        >
+                            {/* Number Badge */}
+                            <div className="flex-shrink-0 w-12 h-12 bg-blue-50 text-brand rounded-xl flex-center font-bold text-xl ring-4 ring-white shadow-sm">
+                                {step.num}
+                            </div>
 
-                <div className="instruction-step" style={{ background: 'var(--bg-color)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--primary-color)', boxShadow: '0 4px 6px -1px var(--shadow-color)' }}>
-                    <div className="step-number" style={{ backgroundColor: 'var(--primary-color)' }}>2</div>
-                    <div className="step-content" style={{ width: '100%' }}>
-                        <h3 style={{ color: 'var(--text-color)', fontSize: '1.25rem', display: 'flex', alignItems: 'center' }}>
-                            지정 장소 방문 <FaCarSide style={{ color: 'var(--primary-hover)', marginLeft: '8px' }} />
-                        </h3>
-                        <p style={{ marginTop: '0.5rem', color: 'var(--text-light)' }}>
-                            출국 당일, 예약하신 시간에 맞추어 저희 주차장에 방문하시거나 지정된 미팅 장소에서 차량을 인계해 주세요.
-                        </p>
-                    </div>
-                </div>
-
-                <div className="instruction-step" style={{ background: 'var(--surface-color)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-                    <div className="step-number" style={{ backgroundColor: 'var(--primary-color)' }}>3</div>
-                    <div className="step-content" style={{ width: '100%' }}>
-                        <h3 style={{ color: 'var(--text-color)', fontSize: '1.25rem', display: 'flex', alignItems: 'center' }}>
-                            공항 이동 및 출국 <FaPlaneDeparture style={{ color: 'var(--primary-hover)', marginLeft: '8px' }} />
-                        </h3>
-                        <p style={{ marginTop: '0.5rem', color: 'var(--text-light)' }}>
-                            저희가 제공하는 무료 셔틀 서비스를 통해 청주공항 출국장까지 편안하게 이동하신 후 즐거운 여행을 떠나세요!
-                        </p>
-                    </div>
-                </div>
-
-                <div className="instruction-step" style={{ background: 'var(--bg-color)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-                    <div className="step-number" style={{ backgroundColor: 'var(--primary-color)' }}>4</div>
-                    <div className="step-content" style={{ width: '100%' }}>
-                        <h3 style={{ color: 'var(--text-color)', fontSize: '1.25rem', display: 'flex', alignItems: 'center' }}>
-                            귀국 후 차량 인수 <FaCarSide style={{ color: 'var(--primary-hover)', marginLeft: '8px', transform: 'scaleX(-1)' }} />
-                        </h3>
-                        <p style={{ marginTop: '0.5rem', color: 'var(--text-light)' }}>
-                            청주공항에 도착하신 후 연락주시면, 셔틀로 주차장까지 모시거나 게이트에서 바로 차량을 인수받을 수 있도록 준비해 드립니다.
-                        </p>
-                    </div>
-                </div>
+                            {/* Content */}
+                            <div className="flex-1 min-w-0">
+                                <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                                    {step.title}
+                                    <Icon className={`text-brand-light text-base ${step.flipIcon ? 'scale-x-[-1]' : ''}`} />
+                                </h3>
+                                <p className="text-sm text-slate-500 mt-1.5 leading-relaxed">{step.desc}</p>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );

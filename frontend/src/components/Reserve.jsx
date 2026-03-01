@@ -27,19 +27,11 @@ const Reserve = () => {
         setStatus({ type: '', message: '' });
 
         try {
-            // Assuming the Nginx proxy is set up or using direct API
-            // Since they are on the same domain usually, we use relative URL /api/reservations
             await axios.post('/api/reservations', formData);
             setStatus({ type: 'success', message: '예약이 성공적으로 완료되었습니다.' });
             setFormData({
-                car_type: '',
-                car_number: '',
-                name: '',
-                phone: '',
-                drop_off_time: '',
-                pick_up_time: '',
-                memo: '',
-                password: ''
+                car_type: '', car_number: '', name: '', phone: '',
+                drop_off_time: '', pick_up_time: '', memo: '', password: ''
             });
         } catch (err) {
             console.error(err);
@@ -52,170 +44,130 @@ const Reserve = () => {
         }
     };
 
+    const inputClass = "w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3.5 text-base focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white transition-all duration-200 placeholder:text-slate-400";
+    const labelClass = "block text-sm font-semibold text-slate-700 mb-2";
+
     return (
-        <>
-            <div className="hero-section" style={{
-                background: 'linear-gradient(rgba(0, 70, 140, 0.7), rgba(0, 70, 140, 0.7)), url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80") center/cover',
-                color: 'white',
-                padding: '4rem 2rem',
-                textAlign: 'center',
-                borderRadius: '16px',
-                marginBottom: '2rem',
-                animation: 'fadeIn 0.5s ease'
-            }}>
-                <h1 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: '700', marginBottom: '1rem', color: 'white' }}>청주공항 주차, 절반 가격으로 가볍게!</h1>
-                <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>서비스는 프리미엄으로</p>
-                <button
-                    className="btn-primary"
-                    style={{ maxWidth: '300px', margin: '0 auto', backgroundColor: '#007BFF', fontSize: '1.25rem' }}
-                    onClick={() => document.getElementById('reserve-form').scrollIntoView({ behavior: 'smooth' })}
-                >
-                    실시간 예약하기
-                </button>
-            </div>
+        <div className="space-y-8 animate-fade-in">
+            {/* Hero Section */}
+            <div className="relative overflow-hidden rounded-2xl min-h-[380px] flex-center flex-col text-center px-6 py-16">
+                {/* Background */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80")' }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-brand-dark/80 to-brand/70" />
 
-            <div className="price-cards" style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '1.5rem',
-                marginBottom: '3rem'
-            }}>
-                <div className="card" style={{ textAlign: 'center', padding: '2rem 1.5rem', borderTop: '4px solid #007BFF' }}>
-                    <h3 style={{ color: 'var(--text-light)', marginBottom: '0.5rem', fontSize: '1rem' }}>1일 주차 요금</h3>
-                    <div style={{ fontSize: '2rem', fontWeight: '700', color: 'var(--primary-color)' }}>5,000<span style={{ fontSize: '1.2rem', color: 'var(--text-color)' }}>원</span></div>
-                </div>
-                <div className="card" style={{ textAlign: 'center', padding: '2rem 1.5rem', borderTop: '4px solid #007BFF' }}>
-                    <h3 style={{ color: 'var(--text-light)', marginBottom: '0.5rem', fontSize: '1rem' }}>무료 셔틀 운행</h3>
-                    <div style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--primary-color)' }}>07:00 ~ 22:00</div>
-                </div>
-                <div className="card" style={{ textAlign: 'center', padding: '2rem 1.5rem', borderTop: '4px solid #007BFF' }}>
-                    <h3 style={{ color: 'var(--text-light)', marginBottom: '0.5rem', fontSize: '1rem' }}>공항까지 소요 시간</h3>
-                    <div style={{ fontSize: '2rem', fontWeight: '700', color: 'var(--primary-color)' }}>7<span style={{ fontSize: '1.2rem', color: 'var(--text-color)' }}>분</span></div>
+                {/* Content */}
+                <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+                        청주공항 반값 주차,<br />
+                        <span className="text-blue-300">서비스는 프리미엄으로.</span>
+                    </h1>
+                    <p className="text-lg sm:text-xl text-slate-300 font-medium">
+                        1일 5,000원 · 공항까지 7분 · 무료 셔틀 운행
+                    </p>
+                    <button
+                        className="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-brand/30 hover:shadow-brand-light/40 transition-all duration-300 transform hover:-translate-y-0.5"
+                        onClick={() => document.getElementById('reserve-form').scrollIntoView({ behavior: 'smooth' })}
+                    >
+                        지금 바로 예약하기
+                    </button>
                 </div>
             </div>
 
-            <div className="card" id="reserve-form">
-                <h2 className="page-title">주차 대행 예약하기</h2>
+            {/* Price Info Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {[
+                    { label: '1일 주차 요금', value: '5,000', unit: '원', highlight: true },
+                    { label: '무료 셔틀 운행', value: '07:00 ~ 22:00', unit: '' },
+                    { label: '공항까지 소요시간', value: '7', unit: '분' },
+                ].map((item, i) => (
+                    <div key={i} className={`bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${item.highlight ? 'border-t-4 border-t-brand ring-1 ring-brand/10' : 'border-t-4 border-t-slate-200'}`}>
+                        <p className="text-sm font-medium text-slate-500 mb-2">{item.label}</p>
+                        <p className="text-3xl font-extrabold text-slate-900">
+                            {item.value}
+                            {item.unit && <span className="text-lg font-semibold text-slate-500 ml-1">{item.unit}</span>}
+                        </p>
+                    </div>
+                ))}
+            </div>
+
+            {/* Reservation Form */}
+            <div id="reserve-form" className="bg-white rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-slate-100 animate-slide-up">
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-8 tracking-tight">
+                    주차 대행 예약하기
+                </h2>
 
                 {status.message && (
-                    <div className={`alert alert-${status.type}`}>
+                    <div className={`p-4 rounded-xl mb-6 flex items-center gap-2 text-sm font-medium ${status.type === 'success'
+                            ? 'bg-emerald-50 border border-emerald-200 text-emerald-700'
+                            : 'bg-orange-50 border border-orange-200 text-orange-600'
+                        }`}>
                         {status.message}
                     </div>
                 )}
 
-                <form onSubmit={handleSubmit}>
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label className="form-label">차량종류</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="car_type"
-                                value={formData.car_type}
-                                onChange={handleChange}
-                                placeholder="예: 소나타, 산타페"
-                                required
-                            />
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Row 1: Car Info */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label className={labelClass}>차량종류</label>
+                            <input type="text" className={inputClass} name="car_type" value={formData.car_type} onChange={handleChange} placeholder="예: 소나타, 산타페" required />
                         </div>
-
-                        <div className="form-group">
-                            <label className="form-label">차량번호</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="car_number"
-                                value={formData.car_number}
-                                onChange={handleChange}
-                                placeholder="예: 12가 3456"
-                                required
-                            />
+                        <div>
+                            <label className={labelClass}>차량번호</label>
+                            <input type="text" className={inputClass} name="car_number" value={formData.car_number} onChange={handleChange} placeholder="예: 12가 3456" required />
                         </div>
                     </div>
 
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label className="form-label">예약자명</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                placeholder="이름을 입력해주세요"
-                                required
-                            />
+                    {/* Row 2: Booker Info */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label className={labelClass}>예약자명</label>
+                            <input type="text" className={inputClass} name="name" value={formData.name} onChange={handleChange} placeholder="이름을 입력해주세요" required />
                         </div>
-
-                        <div className="form-group">
-                            <label className="form-label">연락처</label>
-                            <input
-                                type="tel"
-                                className="form-control"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                placeholder="예: 010-1234-5678"
-                                required
-                            />
+                        <div>
+                            <label className={labelClass}>연락처</label>
+                            <input type="tel" className={inputClass} name="phone" value={formData.phone} onChange={handleChange} placeholder="예: 010-1234-5678" required />
                         </div>
                     </div>
 
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label className="form-label">차량 맡기는 시간</label>
-                            <input
-                                type="datetime-local"
-                                className="form-control"
-                                name="drop_off_time"
-                                value={formData.drop_off_time}
-                                onChange={handleChange}
-                                required
-                            />
+                    {/* Row 3: Times */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label className={labelClass}>차량 맡기는 시간</label>
+                            <input type="datetime-local" className={inputClass} name="drop_off_time" value={formData.drop_off_time} onChange={handleChange} required />
                         </div>
-
-                        <div className="form-group">
-                            <label className="form-label">차량 찾는 시간</label>
-                            <input
-                                type="datetime-local"
-                                className="form-control"
-                                name="pick_up_time"
-                                value={formData.pick_up_time}
-                                onChange={handleChange}
-                                required
-                            />
+                        <div>
+                            <label className={labelClass}>차량 찾는 시간</label>
+                            <input type="datetime-local" className={inputClass} name="pick_up_time" value={formData.pick_up_time} onChange={handleChange} required />
                         </div>
                     </div>
 
-                    <div className="form-group">
-                        <label className="form-label">비밀번호 (예약 확인용)</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            placeholder="비밀번호를 입력해주세요"
-                            required
-                        />
+                    {/* Password */}
+                    <div>
+                        <label className={labelClass}>비밀번호 (예약 확인용)</label>
+                        <input type="password" className={inputClass} name="password" value={formData.password} onChange={handleChange} placeholder="비밀번호를 입력해주세요" required />
                     </div>
 
-                    <div className="form-group">
-                        <label className="form-label">메모</label>
-                        <textarea
-                            className="form-control"
-                            name="memo"
-                            value={formData.memo}
-                            onChange={handleChange}
-                            placeholder="추가 요청사항을 적어주세요"
-                        ></textarea>
+                    {/* Memo */}
+                    <div>
+                        <label className={labelClass}>메모</label>
+                        <textarea className={`${inputClass} min-h-[120px] resize-y py-3`} name="memo" value={formData.memo} onChange={handleChange} placeholder="추가 요청사항을 적어주세요" />
                     </div>
 
-                    <button type="submit" className="btn-primary" disabled={loading}>
+                    {/* Submit */}
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full py-4 bg-brand hover:bg-brand-light text-white rounded-xl font-bold text-lg shadow-md shadow-brand/20 hover:shadow-lg hover:shadow-brand/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5 disabled:hover:translate-y-0"
+                    >
                         {loading ? '예약 중...' : '예약하기'}
                     </button>
                 </form>
             </div>
-        </>
+        </div>
     );
 };
 
