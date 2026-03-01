@@ -56,7 +56,7 @@ const Reserve = () => {
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80")' }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-brand-dark/80 to-brand/70" />
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-brand-dark/30 to-brand/20" />
 
                 {/* Content */}
                 <div className="relative z-10 max-w-2xl mx-auto space-y-6">
@@ -84,13 +84,13 @@ const Reserve = () => {
                     { label: '공항까지 소요시간', value: '7', unit: '분' },
                 ].map((item, i) => (
                     <div key={i} className={`group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center cursor-default
-                        hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.25)] hover:-translate-y-2 hover:scale-[1.03] hover:border-brand/30
+                        hover:shadow-[0_12px_28px_-6px_rgba(239,68,68,0.25)] hover:-translate-y-2 hover:scale-[1.03] hover:border-red-300
                         transition-all duration-300 ease-out
                         ${item.highlight ? 'border-t-4 border-t-brand ring-1 ring-brand/10' : 'border-t-4 border-t-slate-200'}`}>
-                        <p className="text-sm font-medium text-slate-500 mb-2 group-hover:text-brand transition-colors duration-300">{item.label}</p>
-                        <p className="text-3xl font-extrabold text-slate-900 group-hover:text-brand-dark transition-colors duration-300">
+                        <p className="text-sm font-medium text-slate-500 mb-2 group-hover:text-red-500 transition-colors duration-300">{item.label}</p>
+                        <p className="text-3xl font-extrabold text-slate-900 group-hover:text-red-600 transition-colors duration-300">
                             {item.value}
-                            {item.unit && <span className="text-lg font-semibold text-slate-500 ml-1 group-hover:text-brand transition-colors duration-300">{item.unit}</span>}
+                            {item.unit && <span className="text-lg font-semibold text-slate-500 ml-1 group-hover:text-red-400 transition-colors duration-300">{item.unit}</span>}
                         </p>
                     </div>
                 ))}
