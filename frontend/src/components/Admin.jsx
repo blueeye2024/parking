@@ -102,7 +102,7 @@ const Admin = () => {
 
     // 2. Dashboard Screen
     return (
-        <div className="card" style={{ maxWidth: '1000px', margin: '2rem auto' }}>
+        <div className="card" style={{ width: '100%', maxWidth: '1200px', margin: '2rem auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                 <h2 className="page-title" style={{ marginBottom: 0 }}>
                     <FaUserShield style={{ marginRight: '10px' }} />
