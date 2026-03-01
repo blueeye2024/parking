@@ -1,4 +1,77 @@
-@import url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff");
+/* 1. 프리텐다드(Pretendard) 폰트 웹폰트 Import (가장 빠르고 안정적인 CDN) */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
+/* Tailwind CSS 기본 디렉티브 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  /* 2. 전체 페이지 기본 스타일 세팅 */
+  html {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    /* 부드러운 스크롤 적용 (메뉴 클릭 시 부드럽게 이동) */
+    scroll-behavior: smooth;
+    /* 모바일 브라우저 클릭 시 깜빡임 제거 */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+    /* 폰트 렌더링을 부드럽고 선명하게 (Mac/iOS 최적화) */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    word-break: keep-all;
+    /* 한국어 줄바꿈 최적화 (단어 단위로 끊어짐) */
+  }
+
+  /* 3. 텍스트 드래그(선택) 시 프리미엄 블루 컬러 적용 */
+  ::selection {
+    @apply bg-blue-600 text-white;
+  }
+
+  ::-moz-selection {
+    @apply bg-blue-600 text-white;
+  }
+
+  /* 4. 입력창(Input) 자동완성 배경색 제어 (브라우저 기본 노란/파란 배경 방지) */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #0f172a !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+@layer utilities {
+
+  /* 5. 브라우저 스크롤바 고급화 (Webkit 기반: 크롬, 사파리, 엣지) */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+
+  /* 요소들을 수직/수평 정중앙에 배치하는 유틸리티 클래스 */
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}
+
 
 :root {
   --primary-color: #00468C;
