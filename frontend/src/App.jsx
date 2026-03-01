@@ -5,6 +5,7 @@ import Reserve from './components/Reserve';
 import CheckReservation from './components/CheckReservation';
 import HowToUse from './components/HowToUse';
 import AboutUs from './components/AboutUs';
+import Admin from './components/Admin';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,11 +69,12 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/check" element={<CheckReservation />} />
           <Route path="/guide" element={<HowToUse />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </main>
       <footer className="footer">
         <p>&copy; {(new Date().getFullYear())} 청주공항 반값 셔틀 주차장. All rights reserved.</p>
-        <p style={{ fontSize: '0.85rem', color: 'var(--text-light)', marginTop: '0.5rem' }}>Ver 1.2.0 | Last Updated: 2026.03.01</p>
+        <p style={{ fontSize: '0.85rem', color: 'var(--text-light)', marginTop: '0.5rem' }}>Ver 1.3.0 | Last Updated: 2026.03.01</p>
       </footer>
     </Router>
   );

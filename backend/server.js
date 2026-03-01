@@ -144,6 +144,45 @@ app.post('/api/reservations/check', async (req, res) => {
   }
 });
 
+// POST /api/admin/login - Admin Login
+app.post('/api/admin/login', (req, res) => {
+  const { password } = req.body;
+  const ADMIN_PASSWORD = process.env.DB_PASSWORD || 'blueeye0037!'; // Using DB password as default admin password if not specified
+
+  if (password === ADMIN_PASSWORD) {
+    res.status(200).json({ success: true, message: 'Login successful' });
+  } else {
+    res.status(401).json({ success: false, error: 'Invalid password' });
+  }
+});
+
+// GET /api/admin/reservations - Get all reservations
+// Minimal protection for Phase 1. Client sends password in header.
+app.get('/api/admin/reservations', async (req, res) => {
+  const authHeader = req.headers.authorization;
+  const ADMIN_PASSWORD = process.env.DB_PASSWORD || 'blueeye0037!';
+
+  if (!authHeader || authHeader !== `Bearer ${ADMIN_PASSWORD}`) {
+    return res.status(401).json({ error: 'Unauthorized access' });
+  }
+
+  try {
+    const query = 'SELECT * FROM reservations ORDER BY created_at DESC';
+    const [rows] = await pool.execute(query);
+
+    // Remove hashed password from the response data for security
+    const safeRows = rows.map(row => {
+      const { password, ...safeRow } = row;
+      return safeRow;
+    });
+
+    res.status(200).json(safeRows);
+  } catch (err) {
+    console.error('Error fetching reservations:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
