@@ -1,0 +1,4 @@
+도메인: parking.giupplus.com (Port: 9101)
+DB: 114.108.180.228, blueeye, blueeye0037!, parking
+백엔드: FastAPI (Python), 포트 9101로 직접 띄우능 구조 (uvicorn main:app --host 0.0.0.0 --port 9101)
+프론트엔드: React

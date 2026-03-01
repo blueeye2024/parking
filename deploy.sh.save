@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+PROJECT_ROOT="/home/blue/blue/my_project/money"
+BACKEND_DIR="$PROJECT_ROOT/backend"
+FRONTEND_DIR="$PROJECT_ROOT/frontend"
+
+echo "?? [·ÎÄÃ ¸ðµå] ¹èÆ÷¸¦ ½ÃÀÛÇÕ´Ï´Ù..."
+
+cd $BACKEND_DIR
+source venv/bin/activate
+pip install -r requirements.txt
+sudo systemctl restart cheongan-backend
+
+# ÇÁ·ÐÆ®¿£µå ºôµå
+cd $FRONTEND_DIR
+npm install
+npm run build
+
+echo "? ¹èÆ÷ ¿Ï·á!"
