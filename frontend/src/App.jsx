@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { FaCar, FaBars, FaTimes } from 'react-icons/fa';
+import { FaCar, FaBars, FaTimes, FaPhoneVolume, FaCalendarPlus } from 'react-icons/fa';
 import Reserve from './components/Reserve';
 import CheckReservation from './components/CheckReservation';
 import HowToUse from './components/HowToUse';
@@ -78,9 +78,18 @@ function App() {
           <p><strong>주소:</strong> 충청북도 청주시 청원구 외남동 76-1</p>
           <p><strong>사업자등록번호:</strong> 123-45-67890 | <strong>고객센터:</strong> 043-298-1234 / 010-5178-4756</p>
           <p style={{ marginTop: '1rem' }}>&copy; {(new Date().getFullYear())} 청주공항 반값 셔틀 주차장. All rights reserved.</p>
-          <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)' }}>Ver 1.6.0 | Last Updated: 2026.03.01</p>
+          <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)' }}>Ver 1.7.0 | Last Updated: 2026.03.01</p>
         </div>
       </footer>
+
+      <div className="mobile-bottom-bar">
+        <a href="tel:01051784756" className="bottom-btn btn-phone">
+          <FaPhoneVolume /> 전화 상담
+        </a>
+        <Link to="/" className="bottom-btn btn-reserve" onClick={() => window.scrollTo(0, 0)}>
+          <FaCalendarPlus /> 실시간 예약
+        </Link>
+      </div>
     </Router>
   );
 }

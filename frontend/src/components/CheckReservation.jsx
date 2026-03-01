@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { FaShieldAlt } from 'react-icons/fa';
 
 const CheckReservation = () => {
     const [credentials, setCredentials] = useState({ phone: '', password: '' });
@@ -46,9 +47,12 @@ const CheckReservation = () => {
 
     return (
         <div className="card">
-            <h2 className="page-title">예약 확인</h2>
-            <p style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--text-light)' }}>
-                등록하신 연락처와 비밀번호를 입력해주세요.
+            <h2 className="page-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <FaShieldAlt style={{ fontSize: '1.75rem', marginRight: '10px', color: 'var(--primary-hover)' }} />
+                예약 확인
+            </h2>
+            <p style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--text-light)', fontSize: '1.05rem' }}>
+                안전하게 보호된 예약 정보를 확인합니다.
             </p>
 
             {status.message && (

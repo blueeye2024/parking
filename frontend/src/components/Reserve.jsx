@@ -64,7 +64,7 @@ const Reserve = () => {
                 animation: 'fadeIn 0.5s ease'
             }}>
                 <h1 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: '700', marginBottom: '1rem', color: 'white' }}>청주공항 주차, 절반 가격으로 가볍게!</h1>
-                <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>가장 빠르고 경제적인 공항 주차 서비스</p>
+                <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>서비스는 프리미엄으로</p>
                 <button
                     className="btn-primary"
                     style={{ maxWidth: '300px', margin: '0 auto', backgroundColor: '#007BFF', fontSize: '1.25rem' }}
