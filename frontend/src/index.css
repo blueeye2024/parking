@@ -1,15 +1,16 @@
 @import url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff");
 
 :root {
-  --primary-color: #1E40AF;
-  --primary-hover: #2563EB;
-  --bg-color: #ffffff;
-  --surface-color: #F8FAFC;
-  --text-color: #0F172A;
-  --text-light: #64748B;
+  --primary-color: #00468C;
+  --primary-hover: #007BFF;
+  --bg-color: #FFFFFF;
+  --surface-color: #F8F9FA;
+  --text-color: #333333;
+  --text-light: #666666;
+  --error-color: #FF4D4D;
   --border-color: #E2E8F0;
-  --shadow-color: rgba(30, 64, 175, 0.2);
-  --focus-ring: rgba(37, 99, 235, 0.1);
+  --shadow-color: rgba(0, 70, 140, 0.15);
+  --focus-ring: rgba(0, 123, 255, 0.2);
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   line-height: 1.6;
   font-weight: 400;
@@ -100,8 +101,8 @@ body {
 /* Main Content */
 .main-content {
   flex: 1;
-  max-width: 800px;
-  margin: 2rem auto;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 0 1rem;
   width: 100%;
 }
@@ -129,7 +130,7 @@ body {
 }
 
 .page-title {
-  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-size: clamp(28px, 4vw, 32px);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--primary-color);
@@ -138,9 +139,15 @@ body {
 }
 
 h3.section-title,
-h2 {
-  font-size: clamp(1.5rem, 4vw, 1.75rem);
+h2,
+.section-title {
+  font-size: clamp(20px, 3vw, 24px);
   font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.small-text {
+  font-size: clamp(13px, 1.5vw, 14px);
 }
 
 /* Forms */
@@ -250,6 +257,7 @@ textarea.form-control {
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1.5rem;
+  font-size: 16px;
 }
 
 .alert-success {
