@@ -3,6 +3,39 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const axios = require('axios');
+
+// Function to send SMS via NanumiNet
+async function sendSMS(phone, msgText) {
+  try {
+    const url = 'http://sms.nanuminet.com/utf8.php';
+    const now = new Date();
+
+    // Format: "YYYY-MM-DD HH:mm:ss"
+    const pad = n => n.toString().padStart(2, '0');
+    const senddate = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+
+    const params = new URLSearchParams();
+    params.append('sms_id', 'leeyw94');
+    params.append('sms_pw', 'blueeye0037!');
+    params.append('callback', '042-484-1418');
+    params.append('senddate', senddate);
+    params.append('return_data', '');
+    params.append('use_mms', 'N');
+    params.append('upFile', '');
+    params.append('phone[]', phone);
+    params.append('msg[]', msgText);
+
+    const response = await axios.post(url, params.toString(), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+    console.log(`[SMS Sent] Phone: ${phone}, Response: ${response.data}`);
+  } catch (error) {
+    console.error('[SMS Failed] Network/API Error:', error.message);
+  }
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -60,6 +93,11 @@ app.post('/api/reservations', async (req, res) => {
 
     const [result] = await pool.execute(query, values);
     res.status(201).json({ message: 'Reservation created successfully', id: result.insertId });
+
+    // Send SMS as a non-blocking background task using the exact C# spec guidelines
+    const msg = `[청주공항주차] 예약완료!\n성함: ${name}\n차량: ${car_number}\n차량입고일시: ${drop_off_time}`;
+    sendSMS(phone, msg);
+
   } catch (err) {
     console.error('Error creating reservation:', err);
     res.status(500).json({ error: 'Internal server error' });
