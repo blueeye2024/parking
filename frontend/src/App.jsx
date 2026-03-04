@@ -99,7 +99,7 @@ function App() {
               <div className="space-y-1.5">
                 <p className="text-white font-semibold text-base mb-2">청주공항 반값 셔틀주차장</p>
                 <p><span className="text-slate-500">대표</span> 박창현</p>
-                <p><span className="text-slate-500">주소</span> 충청북도 청주시 청원구 외남동 76-1</p>
+                <p><span className="text-slate-500">주소</span> 청주시 청원구 외남로104번길 27-10 &nbsp;<span className="text-slate-500">| 네비 :</span> 셔틀주차장</p>
                 <p><span className="text-slate-500">사업자등록번호</span> 123-45-67890</p>
               </div>
               <div className="space-y-1.5 md:text-right">

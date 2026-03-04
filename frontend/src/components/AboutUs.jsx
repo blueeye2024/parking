@@ -72,7 +72,7 @@ const AboutUs = () => {
                 <h3 className="text-xl font-bold text-brand-dark">이용 안내 (Information)</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                     {[
-                        { label: '위치', value: '충북 청주시 청원구 외남동 76-1 (청주공항 7분 거리)' },
+                        { label: '위치', value: '청주시 청원구 외남로104번길 27-10 (네비: 셔틀주차장)' },
                         { label: '이용 요금', value: '1일 5,000원 (정찰제)' },
                         { label: '셔틀 운행', value: '새벽 4시 ~ 익일 새벽 1시' },
                         { label: '문의 및 예약', value: '043-298-1234 / 010-5178-4756' },
