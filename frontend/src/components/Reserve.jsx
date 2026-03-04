@@ -265,18 +265,95 @@ const Reserve = () => {
                 showWashModal && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center px-4" onClick={() => setShowWashModal(false)}>
                         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-                        <div className="relative bg-white rounded-2xl shadow-xl max-w-md w-full p-6 sm:p-8 animate-slide-up" onClick={(e) => e.stopPropagation()}>
-                            <h3 className="text-xl font-bold text-slate-900 mb-4">손세차 서비스 안내</h3>
-                            <div className="text-sm text-slate-600 space-y-3 leading-relaxed">
-                                <p>손세차 서비스는 차량 크기에 따라 요금이 다릅니다.</p>
-                                <ul className="list-disc list-inside space-y-1">
-                                    <li>소형차: 30,000원</li>
-                                    <li>중형차: 40,000원</li>
-                                    <li>대형차 / SUV: 50,000원</li>
-                                </ul>
-                                <p className="text-slate-400">상세 요금은 차량 상태에 따라 달라질 수 있습니다.</p>
+                        <div className="relative bg-white rounded-2xl shadow-xl max-w-lg w-full p-6 sm:p-8 animate-slide-up max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+                            <div className="flex items-center justify-between mb-6">
+                                <h3 className="text-xl font-bold text-slate-900">세차 요금표</h3>
+                                <button onClick={() => setShowWashModal(false)} className="text-slate-400 hover:text-slate-600 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                                </button>
                             </div>
-                            <button onClick={() => setShowWashModal(false)} className="mt-6 w-full py-3 bg-brand hover:bg-brand-light text-white rounded-xl font-bold transition-colors">확인</button>
+
+                            <div className="text-sm text-slate-700 space-y-6">
+                                {/* 승용차 요금표 */}
+                                <div>
+                                    <table className="w-full text-center border-collapse text-xs sm:text-sm">
+                                        <thead>
+                                            <tr className="bg-red-400 text-white">
+                                                <th className="border border-red-300 py-2 w-1/5">구분</th>
+                                                <th className="border border-red-300 py-2 w-3/5">차종</th>
+                                                <th className="border border-red-300 py-2 w-1/5">세차비</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="bg-white">
+                                            <tr>
+                                                <td className="border border-slate-200 py-2 font-medium bg-slate-50">경차</td>
+                                                <td className="border border-slate-200 py-2 text-left px-3 text-slate-600">마티즈, 모닝, 레이, 캐스퍼 등</td>
+                                                <td className="border border-slate-200 py-2 font-bold bg-yellow-300">30,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="border border-slate-200 py-2 font-medium bg-slate-50">소형</td>
+                                                <td className="border border-slate-200 py-2 text-left px-3 text-slate-600">아반떼, 엑센트, 프라이드, SM3, K3 등</td>
+                                                <td className="border border-slate-200 py-2 font-bold bg-yellow-300">35,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="border border-slate-200 py-2 font-medium bg-slate-50">중형</td>
+                                                <td className="border border-slate-200 py-2 text-left px-3 text-slate-600 leading-tight">소나타, 크루즈, i40, K5, SM5, G70<br />C클래스, 3시리즈 등</td>
+                                                <td className="border border-slate-200 py-2 font-bold bg-yellow-300">40,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="border border-slate-200 py-2 font-medium bg-slate-50">준중형</td>
+                                                <td className="border border-slate-200 py-2 text-left px-3 text-slate-600 leading-tight">그랜저, 말리부, K7, SM6, SM7<br />E클래스, 5시리즈 등</td>
+                                                <td className="border border-slate-200 py-2 font-bold bg-yellow-300">45,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="border border-slate-200 py-2 font-medium bg-slate-50">대형</td>
+                                                <td className="border border-slate-200 py-2 text-left px-3 text-slate-600 leading-tight">에쿠스, 임팔라, K8, K9, G80, 그랜져(GN7)<br />S클래스, 7시리즈 등</td>
+                                                <td className="border border-slate-200 py-2 font-bold bg-yellow-300">50,000</td>
+                                            </tr>
+                                            <tr className="bg-red-400 text-white">
+                                                <th colSpan="3" className="border border-red-300 py-1.5 font-medium">RV차량</th>
+                                            </tr>
+                                            <tr>
+                                                <td className="border border-slate-200 py-2 font-medium bg-slate-50 leading-tight">소형<br />RV</td>
+                                                <td className="border border-slate-200 py-2 text-left px-3 text-slate-600 leading-tight">코나, 쏘울, 니로, 투싼, 셀토스,<br />베뉴, 스포티지, 스토닉, 티볼리, XM3 등</td>
+                                                <td className="border border-slate-200 py-2 font-bold bg-yellow-300">50,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="border border-slate-200 py-2 font-medium bg-slate-50 leading-tight">중형<br />RV</td>
+                                                <td className="border border-slate-200 py-2 text-left px-3 text-slate-600 leading-tight">싼타페, 쏘렌토, 모하비, 올란도,<br />팰리세이드, 토레스, QM6, 제네시스GV 등</td>
+                                                <td className="border border-slate-200 py-2 font-bold bg-yellow-300">60,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="border border-slate-200 py-2 font-medium bg-slate-50">승합</td>
+                                                <td className="border border-slate-200 py-2 text-left px-3 text-slate-600">스타렉스, 렉스턴, 투리스모, 카니발 등</td>
+                                                <td className="border border-slate-200 py-2 font-bold bg-yellow-300">70,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td colSpan="2" className="border border-slate-200 py-2 font-medium bg-white">RV 수입차량</td>
+                                                <td className="border border-slate-200 py-2 font-bold bg-yellow-300">60,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="border border-slate-200 py-2 font-medium bg-yellow-500">추가시공</td>
+                                                <td colSpan="2" className="border border-slate-200 py-2 font-medium bg-yellow-300">물 왁스 코팅 20,000 &nbsp;&nbsp;|&nbsp;&nbsp; 유리 발수 코팅 10,000</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                {/* 주의사항 */}
+                                <div className="bg-slate-50 rounded-xl p-4 text-xs sm:text-sm">
+                                    <p className="font-bold text-center mb-3 text-slate-800">※ 주의사항 ※</p>
+                                    <ul className="space-y-1.5 list-disc list-outside ml-4 text-slate-600">
+                                        <li>차량의 <span className="text-red-500 font-bold">심한 오염 상태 및 크기</span>에 따라 <span className="text-red-500 font-bold">추가 비용</span>이 발생할 수 있습니다.</li>
+                                        <li><span className="text-red-500 font-bold">귀중품은 차내에 보관 시</span> 책임지지 않습니다.</li>
+                                        <li><span className="text-red-500 font-bold">기상 상황</span>에 따라 <span className="text-red-500 font-bold">세차가 불가</span>할 수 있습니다. <span className="text-red-500 font-bold">특히 비, 눈, 강풍</span> 등으로 인해 작업이 어려울 수 있으니 <span className="text-red-500 font-bold">예약 전 날씨를 꼭 확인해 주세요.</span></li>
+                                        <li>작업 소요시간: 약 1~2시간 (<span className="text-red-500 font-bold">차량 오염 상태</span>에 따라 변동될 수 있습니다)</li>
+                                        <li>세차 후 <span className="text-red-500 font-bold">차량 상태</span>는 관리에 따라 달라질 수 있습니다.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <button onClick={() => setShowWashModal(false)} className="mt-6 w-full py-3.5 bg-brand hover:bg-brand-light text-white rounded-xl font-bold transition-colors">닫기</button>
                         </div>
                     </div>
                 )
