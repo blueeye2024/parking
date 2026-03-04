@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaUserShield, FaSignOutAlt, FaRedo, FaTrash } from 'react-icons/fa';
+import { FaUserShield, FaSignOutAlt, FaSync } from 'react-icons/fa';
 
 const Admin = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -12,7 +12,6 @@ const Admin = () => {
     const [loading, setLoading] = useState(false);
     const [fetchError, setFetchError] = useState('');
 
-    // Check initial auth state from localStorage
     useEffect(() => {
         const adminToken = localStorage.getItem('adminToken');
         if (adminToken) {
@@ -25,17 +24,15 @@ const Admin = () => {
         e.preventDefault();
         setLoginError('');
         try {
-            // Typically /api/admin/login in production setup
-            const response = await axios.post((import.meta.env.VITE_API_BASE_URL || '') + '/api/admin/login', { username, password });
+            const response = await axios.post('/api/admin/login', { username, password });
             if (response.data.success) {
-                // Use password as token for simple setup
                 const token = `${username}:${password}`;
                 localStorage.setItem('adminToken', token);
                 setIsAuthenticated(true);
                 fetchReservations(token);
             }
         } catch (err) {
-            setLoginError(err.response?.data?.error || '로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.');
+            setLoginError(err.response?.data?.error || '로그인에 실패했습니다.');
         }
     };
 
@@ -49,15 +46,13 @@ const Admin = () => {
         setLoading(true);
         setFetchError('');
         try {
-            const response = await axios.get((import.meta.env.VITE_API_BASE_URL || '') + '/api/admin/reservations', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+            const response = await axios.get('/api/admin/reservations', {
+                headers: { Authorization: `Bearer ${token}` }
             });
             setReservations(response.data);
         } catch (err) {
-            if (err.response && err.response.status === 401) {
-                handleLogout(); // Token invalid
+            if (err.response?.status === 401) {
+                handleLogout();
             } else {
                 setFetchError('데이터를 불러오는데 실패했습니다.');
             }
@@ -66,106 +61,114 @@ const Admin = () => {
         }
     };
 
-    // 1. Login Screen
+    const formatDT = (dt) => new Date(dt).toLocaleString('ko-KR', {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit'
+    });
+
+    const inputClass = "w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3.5 text-base focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white transition-all duration-200 placeholder:text-slate-400";
+
+    // Login Screen
     if (!isAuthenticated) {
         return (
-            <div className="card" style={{ maxWidth: '400px', margin: '4rem auto', textAlign: 'center' }}>
-                <FaUserShield size={48} color="var(--primary-color)" style={{ marginBottom: '1rem' }} />
-                <h2 className="page-title">관리자 로그인</h2>
-                <form onSubmit={handleLogin}>
-                    <div className="form-group" style={{ marginBottom: '1rem' }}>
-                        <input
-                            type="text"
-                            placeholder="관리자 계정 아이디"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            className="form-control"
-                            required
-                        />
+            <div className="animate-fade-in flex justify-center py-16">
+                <div className="w-full max-w-sm">
+                    <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.06)] ring-1 ring-slate-100">
+                        <div className="text-center mb-8">
+                            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-50 rounded-2xl mb-4">
+                                <FaUserShield className="text-brand text-2xl" />
+                            </div>
+                            <h2 className="text-2xl font-bold text-slate-900 tracking-tight">관리자 로그인</h2>
+                        </div>
+
+                        {loginError && (
+                            <div className="bg-orange-50 border border-orange-200 text-orange-600 p-3 rounded-xl text-sm font-medium mb-5">
+                                {loginError}
+                            </div>
+                        )}
+
+                        <form onSubmit={handleLogin} className="space-y-4">
+                            <input type="text" className={inputClass} placeholder="아이디" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                            <input type="password" className={inputClass} placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                            <button type="submit" className="w-full py-4 bg-brand hover:bg-brand-light text-white rounded-xl font-bold text-base shadow-md shadow-brand/20 hover:shadow-lg transition-all duration-300 mt-2">
+                                로그인
+                            </button>
+                        </form>
                     </div>
-                    <div className="form-group">
-                        <input
-                            type="password"
-                            placeholder="관리자 계정 비밀번호"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="form-control"
-                            required
-                        />
-                    </div>
-                    {loginError && <p className="error-message" style={{ color: 'var(--error-color)', fontSize: '0.9rem', marginBottom: '1rem' }}>{loginError}</p>}
-                    <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>로그인</button>
-                </form>
+                </div>
             </div>
         );
     }
 
-    // 2. Dashboard Screen
+    // Dashboard Screen
     return (
-        <div className="card" style={{ width: '100%', maxWidth: '1200px', margin: '2rem auto' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                <h2 className="page-title" style={{ marginBottom: 0 }}>
-                    <FaUserShield style={{ marginRight: '10px' }} />
-                    예약 관리 대시보드
+        <div className="animate-fade-in space-y-6">
+            {/* Header Bar */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                <h2 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                    <FaUserShield className="text-brand" /> 예약 관리
+                    <span className="text-sm font-normal text-slate-400 ml-2">총 {reservations.length}건</span>
                 </h2>
-                <div style={{ display: 'flex', gap: '15px' }}>
-                    <span
-                        onClick={() => fetchReservations(localStorage.getItem('adminToken'))}
-                        style={{ color: 'var(--primary-color)', cursor: 'pointer', fontWeight: 'bold' }}
-                    >
-                        <FaRedo /> 새로고침
-                    </span>
-                    <span
-                        onClick={handleLogout}
-                        style={{ color: 'var(--text-light)', cursor: 'pointer', fontWeight: 'bold' }}
-                    >
+                <div className="flex items-center gap-4 text-sm">
+                    <button onClick={() => fetchReservations(localStorage.getItem('adminToken'))} className="text-brand font-semibold flex items-center gap-1 hover:text-brand-light transition-colors">
+                        <FaSync className={loading ? 'animate-spin' : ''} /> 새로고침
+                    </button>
+                    <button onClick={handleLogout} className="text-slate-500 font-semibold flex items-center gap-1 hover:text-slate-700 transition-colors">
                         <FaSignOutAlt /> 로그아웃
-                    </span>
+                    </button>
                 </div>
             </div>
 
-            {fetchError && <p className="error-message" style={{ color: 'var(--error-color)', marginBottom: '1rem' }}>{fetchError}</p>}
+            {fetchError && (
+                <div className="bg-orange-50 border border-orange-200 text-orange-600 p-4 rounded-xl text-sm font-medium">
+                    {fetchError}
+                </div>
+            )}
 
-            <div style={{ overflowX: 'auto' }}>
+            {/* Table */}
+            <div className="bg-white rounded-2xl shadow-sm ring-1 ring-slate-100 overflow-hidden">
                 {loading ? (
-                    <p style={{ textAlign: 'center', padding: '2rem' }}>데이터를 불러오는 중입니다...</p>
+                    <p className="text-center py-16 text-slate-400">데이터를 불러오는 중...</p>
                 ) : reservations.length === 0 ? (
-                    <p style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-light)' }}>등록된 예약 정보가 없습니다.</p>
+                    <p className="text-center py-16 text-slate-400">등록된 예약 정보가 없습니다.</p>
                 ) : (
-                    <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-                        <thead>
-                            <tr style={{ backgroundColor: 'var(--border-color)', borderBottom: '2px solid var(--primary-color)' }}>
-                                <th style={{ padding: '1rem', whiteSpace: 'nowrap' }}>ID</th>
-                                <th style={{ padding: '1rem', whiteSpace: 'nowrap' }}>예약자(연락처)</th>
-                                <th style={{ padding: '1rem', whiteSpace: 'nowrap' }}>차량정보</th>
-                                <th style={{ padding: '1rem', whiteSpace: 'nowrap' }}>입고 / 출고 일정</th>
-                                <th style={{ padding: '1rem' }}>메모</th>
-                                <th style={{ padding: '1rem', whiteSpace: 'nowrap' }}>접수일시</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {reservations.map((res) => (
-                                <tr key={res.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
-                                    <td style={{ padding: '1rem', whiteSpace: 'nowrap' }}>#{res.id}</td>
-                                    <td style={{ padding: '1rem', whiteSpace: 'nowrap' }}>
-                                        <strong>{res.name}</strong> <span style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>({res.phone})</span>
-                                    </td>
-                                    <td style={{ padding: '1rem', whiteSpace: 'nowrap' }}>
-                                        {res.car_type} / <strong>{res.car_number}</strong>
-                                    </td>
-                                    <td style={{ padding: '1rem', fontSize: '0.95rem', whiteSpace: 'nowrap' }}>
-                                        <span style={{ color: 'var(--primary-color)' }}>입고: {new Date(res.drop_off_time).toLocaleString('ko-KR')}</span>
-                                        <span style={{ margin: '0 8px', color: '#ccc' }}>|</span>
-                                        <span>출고: {new Date(res.pick_up_time).toLocaleString('ko-KR')}</span>
-                                    </td>
-                                    <td style={{ padding: '1rem', fontSize: '0.9rem', maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{res.memo || '-'}</td>
-                                    <td style={{ padding: '1rem', fontSize: '0.85rem', color: 'var(--text-light)', whiteSpace: 'nowrap' }}>
-                                        {new Date(res.created_at).toLocaleString('ko-KR')}
-                                    </td>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-sm">
+                            <thead>
+                                <tr className="bg-slate-50 border-b-2 border-brand/20">
+                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">ID</th>
+                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">예약자</th>
+                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">연락처</th>
+                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">차량</th>
+                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">입고</th>
+                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">출고</th>
+                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">일수</th>
+                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">금액</th>
+                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">메모</th>
+                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">접수일</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody className="divide-y divide-slate-100">
+                                {reservations.map((r) => (
+                                    <tr key={r.id} className="hover:bg-slate-50/50 transition-colors">
+                                        <td className="px-4 py-3 text-slate-400 whitespace-nowrap">#{r.id}</td>
+                                        <td className="px-4 py-3 font-semibold text-slate-900 whitespace-nowrap">{r.name}</td>
+                                        <td className="px-4 py-3 text-slate-600 whitespace-nowrap">{r.phone}</td>
+                                        <td className="px-4 py-3 whitespace-nowrap">
+                                            <span className="text-slate-500">{r.car_type}</span>
+                                            <span className="font-semibold text-slate-900 ml-1">{r.car_number}</span>
+                                        </td>
+                                        <td className="px-4 py-3 text-brand whitespace-nowrap">{formatDT(r.drop_off_time)}</td>
+                                        <td className="px-4 py-3 text-slate-600 whitespace-nowrap">{formatDT(r.pick_up_time)}</td>
+                                        <td className="px-4 py-3 text-slate-900 font-semibold whitespace-nowrap">{r.days || '-'}일</td>
+                                        <td className="px-4 py-3 text-slate-900 font-semibold whitespace-nowrap">{r.price ? r.price.toLocaleString() + '원' : '-'}</td>
+                                        <td className="px-4 py-3 text-slate-500 max-w-[140px] truncate">{r.memo || '-'}</td>
+                                        <td className="px-4 py-3 text-xs text-slate-400 whitespace-nowrap">{formatDT(r.created_at)}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 )}
             </div>
         </div>
