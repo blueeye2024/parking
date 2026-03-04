@@ -248,13 +248,18 @@ const Reserve = () => {
                             </div>
 
                             {/* Submit */}
-                            <button
-                                type="submit"
-                                disabled={loading}
-                                className="w-full py-4 bg-brand hover:bg-brand-light text-white rounded-xl font-bold text-lg shadow-md shadow-brand/20 hover:shadow-lg hover:shadow-brand/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5 disabled:hover:translate-y-0"
-                            >
-                                {loading ? '예약 중...' : '예약하기'}
-                            </button>
+                            <div>
+                                <button
+                                    type="submit"
+                                    disabled={loading}
+                                    className="w-full py-4 bg-brand hover:bg-brand-light text-white rounded-xl font-bold text-lg shadow-md shadow-brand/20 hover:shadow-lg hover:shadow-brand/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5 disabled:hover:translate-y-0"
+                                >
+                                    {loading ? '예약 중...' : '예약하기'}
+                                </button>
+                                <p className="text-center text-sm text-slate-500 mt-4 font-medium">
+                                    예약 진행 시 개인정보 수집 및 이용에 동의하는 것으로 간주합니다.
+                                </p>
+                            </div>
                         </form>
                     )}
                 </div>
