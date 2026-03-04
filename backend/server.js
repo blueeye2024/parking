@@ -214,7 +214,7 @@ app.get('/api/admin/reservations', async (req, res) => {
       return res.status(401).json({ error: 'Unauthorized credentials' });
     }
 
-    const query = 'SELECT * FROM reservations ORDER BY created_at DESC';
+    const query = "SELECT * FROM reservations WHERE source_type = 'WEB' ORDER BY created_at DESC";
     const [rows] = await pool.execute(query);
 
     // Remove hashed password from the response data for security

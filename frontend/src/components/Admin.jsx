@@ -222,6 +222,7 @@ const Admin = () => {
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">차량</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">입고</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">출고</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">손세차</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">일수</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">금액</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">메모</th>
@@ -240,6 +241,13 @@ const Admin = () => {
                                         </td>
                                         <td className="px-5 py-4 text-brand whitespace-nowrap">{formatDT(r.drop_off_time)}</td>
                                         <td className="px-5 py-4 text-slate-600 whitespace-nowrap">{formatDT(r.pick_up_time)}</td>
+                                        <td className="px-5 py-4 whitespace-nowrap">
+                                            {r.hand_wash === 'Y' ? (
+                                                <span className="px-2.5 py-1 text-xs font-semibold bg-brand/10 text-brand rounded-full">신청</span>
+                                            ) : (
+                                                <span className="text-slate-400">-</span>
+                                            )}
+                                        </td>
                                         <td className="px-5 py-4 text-slate-900 font-semibold whitespace-nowrap">{r.days || '-'}일</td>
                                         <td className="px-5 py-4 text-slate-900 font-semibold whitespace-nowrap">{r.price ? r.price.toLocaleString() + '원' : '-'}</td>
                                         <td className="px-5 py-4 text-slate-500 max-w-[140px] truncate">{r.memo || '-'}</td>
