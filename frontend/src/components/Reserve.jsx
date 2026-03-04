@@ -228,8 +228,10 @@ const Reserve = () => {
                                         <input type="radio" name="hand_wash" value="Y" checked={formData.hand_wash === 'Y'} onChange={handleChange} className="w-4 h-4 text-brand" />
                                         <span className="text-sm text-slate-700 font-semibold">신청</span>
                                     </label>
-                                    <span className="text-xs text-slate-400 ml-1">(30,000원~)</span>
-                                    <button type="button" onClick={() => setShowWashModal(true)} className="text-xs text-brand hover:text-brand-light font-semibold underline underline-offset-2 transition-colors">상세보기</button>
+                                    <div className="ml-auto flex items-center gap-2">
+                                        <span className="text-xs text-slate-400">(30,000원~)</span>
+                                        <button type="button" onClick={() => setShowWashModal(true)} className="text-xs text-brand hover:text-brand-light font-semibold underline underline-offset-2 transition-colors">상세보기</button>
+                                    </div>
                                 </div>
                             </div>
 
