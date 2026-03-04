@@ -91,7 +91,7 @@ const Reserve = () => {
                         <span className="text-blue-300">서비스는 프리미엄으로.</span>
                     </h1>
                     <p className="text-lg sm:text-xl text-slate-300 font-medium">
-                        1일 5,000원 · 공항까지 7분 · 무료 셔틀 운행
+                        공항 주차장의 <span className="text-white font-bold">딱 절반 가격!</span> · 1일 5,000원 · 무료 셔틀
                     </p>
                     <button
                         className="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-brand/30 hover:shadow-brand-light/40 transition-all duration-300 transform hover:-translate-y-0.5"
@@ -104,15 +104,25 @@ const Reserve = () => {
 
             {/* Price Info Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {[
-                    { label: '1일 주차 요금', value: '5,000', unit: '원', highlight: true },
-                    { label: '무료 셔틀 운행', value: '04:00 ~ 익일 01:00', unit: '' },
-                    { label: '공항까지 소요시간', value: '7', unit: '분' },
-                ].map((item, i) => (
+                {/* Price Comparison Card */}
+                <div className="group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center cursor-default
+                    hover:shadow-[0_12px_28px_-6px_rgba(239,68,68,0.25)] hover:-translate-y-2 hover:scale-[1.03] hover:border-red-300
+                    transition-all duration-300 ease-out border-t-4 border-t-brand ring-1 ring-brand/10 relative overflow-hidden">
+                    <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-extrabold px-2.5 py-1 rounded-full shadow-sm">50% OFF</div>
+                    <p className="text-sm font-medium text-slate-500 mb-3 group-hover:text-red-500 transition-colors duration-300">1일 주차 요금</p>
+                    <p className="text-sm text-slate-400 line-through mb-1">공항 주차장 10,000원</p>
+                    <p className="text-3xl font-extrabold text-brand group-hover:text-red-600 transition-colors duration-300">
+                        5,000<span className="text-lg font-semibold text-slate-500 ml-1 group-hover:text-red-400 transition-colors duration-300">원</span>
+                    </p>
+                    <p className="text-xs text-emerald-600 font-semibold mt-2">매일 5,000원 절약!</p>
+                </div>
+
+                {/* Shuttle Card */}
+                {[{ label: '무료 셔틀 운행', value: '04:00 ~ 익일 01:00', unit: '' },
+                { label: '공항까지 소요시간', value: '7', unit: '분' }].map((item, i) => (
                     <div key={i} className={`group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center cursor-default
                         hover:shadow-[0_12px_28px_-6px_rgba(239,68,68,0.25)] hover:-translate-y-2 hover:scale-[1.03] hover:border-red-300
-                        transition-all duration-300 ease-out
-                        ${item.highlight ? 'border-t-4 border-t-brand ring-1 ring-brand/10' : 'border-t-4 border-t-slate-200'}`}>
+                        transition-all duration-300 ease-out border-t-4 border-t-slate-200`}>
                         <p className="text-sm font-medium text-slate-500 mb-2 group-hover:text-red-500 transition-colors duration-300">{item.label}</p>
                         <p className="text-3xl font-extrabold text-slate-900 group-hover:text-red-600 transition-colors duration-300">
                             {item.value}

@@ -2,7 +2,7 @@ import React from 'react';
 import { FaTag, FaBus, FaParking, FaShieldAlt, FaMapMarkerAlt, FaHandshake } from 'react-icons/fa';
 
 const features = [
-    { icon: FaTag, title: '압도적인 가격 경쟁력', desc: '공항 내 주차장 대비 50% 저렴한 1일 5,000원의 파격적인 요금!' },
+    { icon: FaTag, title: '공항 대비 50% 절약', desc: '공항 내 주차장 1일 10,000원 → 우리는 1일 5,000원! 매일 5,000원씩 절약하세요.' },
     { icon: FaBus, title: '신속한 셔틀 서비스', desc: '주차장에서 공항까지 무료 셔틀버스를 운행합니다. (운행 시간: 04:00 ~ 익일 01:00)' },
     { icon: FaParking, title: '넉넉한 주차 공간', desc: '자동차 400대를 동시에 수용할 수 있는 대규모 전용 주차장 완비.' },
     { icon: FaShieldAlt, title: '철저한 안전 관리', desc: '24시간 CCTV 및 무인 차단기 설치로 도난 예방. 운행 차량 종합보험 및 주차 배상 책임보험 가입 완료.' },
