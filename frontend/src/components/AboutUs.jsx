@@ -18,7 +18,7 @@ const AboutUs = () => {
                 </h2>
                 <p className="text-slate-500 text-base">
                     주차난 걱정 끝! 1일 5,000원으로 즐기는 스마트한 여행의 시작<br />
-                    <strong className="text-slate-700">청주 반값 셔틀 주차장</strong>
+                    <strong className="text-slate-700">청주공항 반값 셔틀주차장</strong>
                 </p>
             </div>
 
@@ -29,7 +29,7 @@ const AboutUs = () => {
                     청주국제공항의 고질적인 주차난으로 여행 전부터 스트레스 받으셨나요?
                 </p>
                 <p className="text-slate-600 leading-relaxed mt-2">
-                    <strong>'청주 반값 셔틀 주차장'</strong>은 공항 이용객들의 편의를 위해 탄생한 실속형 주차 서비스입니다.
+                    <strong>'청주공항 반값 셔틀주차장'</strong>은 공항 이용객들의 편의를 위해 탄생한 실속형 주차 서비스입니다.
                     공항에서 단 7분 거리(약 5km)에 위치하여, 합리적인 가격과 안전한 보안 시설로 고객님의 소중한 차량을 관리해 드립니다.
                 </p>
             </div>
@@ -63,7 +63,7 @@ const AboutUs = () => {
                     <FaHandshake className="text-brand" /> 믿고 맡길 수 있는 든든한 파트너
                 </h3>
                 <p className="text-slate-500 text-sm italic leading-relaxed">
-                    청주공항 반값 셔틀 주차장 박창현 대표는 "요즘 청주국제공항 내 주차장은 극심한 주차난으로 고객들이 낭패를 당하는 경우가 많다"면서 "이런 문제를 해소하는데 획기적인 도움을 주기 위해 <strong>'청주공항 반값 셔틀 주차장'</strong>을 공항 인근에 개장하고 고객들이 안전하게 이용할 수 있도록 하고 있다"고 말했다.
+                    청주공항 반값 셔틀주차장 박창현 대표는 "요즘 청주국제공항 내 주차장은 극심한 주차난으로 고객들이 낭패를 당하는 경우가 많다"면서 "이런 문제를 해소하는데 획기적인 도움을 주기 위해 <strong>'청주공항 반값 셔틀주차장'</strong>을 공항 인근에 개장하고 고객들이 안전하게 이용할 수 있도록 하고 있다"고 말했다.
                 </p>
             </div>
 

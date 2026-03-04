@@ -97,7 +97,7 @@ function App() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
               <div className="space-y-1.5">
-                <p className="text-white font-semibold text-base mb-2">청주공항 반값 셔틀 주차장</p>
+                <p className="text-white font-semibold text-base mb-2">청주공항 반값 셔틀주차장</p>
                 <p><span className="text-slate-500">대표</span> 박창현</p>
                 <p><span className="text-slate-500">주소</span> 충청북도 청주시 청원구 외남동 76-1</p>
                 <p><span className="text-slate-500">사업자등록번호</span> 123-45-67890</p>
@@ -109,7 +109,7 @@ function App() {
               </div>
             </div>
             <div className="border-t border-slate-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-500">
-              <p><Link to="/admin" className="no-underline text-slate-500 hover:text-slate-400 transition-colors">&copy;</Link> {new Date().getFullYear()} 청주공항 반값 셔틀 주차장. All rights reserved.</p>
+              <p><Link to="/admin" className="no-underline text-slate-500 hover:text-slate-400 transition-colors">&copy;</Link> {new Date().getFullYear()} 청주공항 반값 셔틀주차장. All rights reserved.</p>
               <p>Ver 2.0.0 | Last Updated: 2026.03.01</p>
             </div>
           </div>
