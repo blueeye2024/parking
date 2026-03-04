@@ -83,23 +83,6 @@ const AboutUs = () => {
                         </div>
                     ))}
                 </div>
-
-                <div>
-                    <h4 className="font-bold text-slate-900 flex items-center gap-2 mb-3 text-sm">
-                        <FaMapMarkerAlt className="text-brand" /> 오시는 길
-                    </h4>
-                    <div className="w-full h-[400px] bg-slate-100 rounded-xl overflow-hidden">
-                        <iframe
-                            src="https://m.map.naver.com/map.naver?query=충청북도 청주시 청원구 외남동 76-1"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }}
-                            allowFullScreen=""
-                            loading="lazy"
-                            title="청주공항 반값셔틀주차장 위치"
-                        />
-                    </div>
-                </div>
             </div>
         </div>
     );
