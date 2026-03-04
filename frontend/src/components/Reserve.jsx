@@ -74,7 +74,7 @@ const Reserve = () => {
     const labelClass = "block text-sm font-semibold text-slate-700 mb-2";
 
     return (
-        <div className="space-y-8 animate-fade-in">
+        <div className="space-y-12 animate-fade-in">
             {/* Hero Section */}
             <div className="relative overflow-hidden rounded-2xl min-h-[380px] flex-center flex-col text-center px-6 py-16">
                 {/* Background */}
