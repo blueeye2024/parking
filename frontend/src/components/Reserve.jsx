@@ -15,10 +15,29 @@ const Reserve = () => {
 
     const [status, setStatus] = useState({ type: '', message: '' });
     const [loading, setLoading] = useState(false);
+    const [completedReservation, setCompletedReservation] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    // Phone auto-format: numbers only → auto-insert dashes (010-1234-5678)
+    const handlePhoneChange = (e) => {
+        const raw = e.target.value.replace(/[^0-9]/g, '').slice(0, 11);
+        let formatted = raw;
+        if (raw.length > 3 && raw.length <= 7) {
+            formatted = `${raw.slice(0, 3)}-${raw.slice(3)}`;
+        } else if (raw.length > 7) {
+            formatted = `${raw.slice(0, 3)}-${raw.slice(3, 7)}-${raw.slice(7)}`;
+        }
+        setFormData(prev => ({ ...prev, phone: formatted }));
+    };
+
+    const formatDateTime = (dt) => {
+        if (!dt) return '';
+        const d = new Date(dt);
+        return d.toLocaleString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
     };
 
     const handleSubmit = async (e) => {
@@ -27,8 +46,9 @@ const Reserve = () => {
         setStatus({ type: '', message: '' });
 
         try {
-            await axios.post('/api/reservations', formData);
-            setStatus({ type: 'success', message: '예약이 성공적으로 완료되었습니다.' });
+            const response = await axios.post('/api/reservations', formData);
+            setCompletedReservation(response.data.reservation);
+            setStatus({ type: 'success', message: '예약이 성공적으로 완료되었습니다! 입력하신 번호로 확인 문자가 발송됩니다.' });
             setFormData({
                 car_type: '', car_number: '', name: '', phone: '',
                 drop_off_time: '', pick_up_time: '', memo: '', password: ''
@@ -111,64 +131,91 @@ const Reserve = () => {
                     </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Row 1: Car Info */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label className={labelClass}>차량종류</label>
-                            <input type="text" className={inputClass} name="car_type" value={formData.car_type} onChange={handleChange} placeholder="예: 소나타, 산타페" required />
+                {completedReservation ? (
+                    <div className="animate-slide-up space-y-6">
+                        <div className="divide-y divide-slate-100 bg-slate-50 rounded-2xl p-6">
+                            {[
+                                { label: '예약자명', value: completedReservation.name },
+                                { label: '연락처', value: completedReservation.phone },
+                                { label: '차량종류', value: completedReservation.car_type },
+                                { label: '차량번호', value: completedReservation.car_number },
+                                { label: '맡기는 시간', value: formatDateTime(completedReservation.drop_off_time) },
+                                { label: '찾는 시간', value: formatDateTime(completedReservation.pick_up_time) },
+                                ...(completedReservation.memo ? [{ label: '메모', value: completedReservation.memo }] : []),
+                            ].map((row, i) => (
+                                <div key={i} className="flex py-3.5">
+                                    <span className="w-28 flex-shrink-0 text-sm text-slate-500 font-medium">{row.label}</span>
+                                    <span className="text-sm text-slate-900 font-semibold">{row.value}</span>
+                                </div>
+                            ))}
                         </div>
-                        <div>
-                            <label className={labelClass}>차량번호</label>
-                            <input type="text" className={inputClass} name="car_number" value={formData.car_number} onChange={handleChange} placeholder="예: 12가 3456" required />
-                        </div>
+                        <button
+                            className="w-full py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-base transition-colors"
+                            onClick={() => { setCompletedReservation(null); setStatus({ type: '', message: '' }); }}
+                        >
+                            새 예약하기
+                        </button>
                     </div>
-
-                    {/* Row 2: Booker Info */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label className={labelClass}>예약자명</label>
-                            <input type="text" className={inputClass} name="name" value={formData.name} onChange={handleChange} placeholder="이름을 입력해주세요" required />
+                ) : (
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* Row 1: Car Info */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label className={labelClass}>차량종류</label>
+                                <input type="text" className={inputClass} name="car_type" value={formData.car_type} onChange={handleChange} placeholder="예: 소나타, 산타페" required />
+                            </div>
+                            <div>
+                                <label className={labelClass}>차량번호</label>
+                                <input type="text" className={inputClass} name="car_number" value={formData.car_number} onChange={handleChange} placeholder="예: 12가 3456" required />
+                            </div>
                         </div>
-                        <div>
-                            <label className={labelClass}>연락처</label>
-                            <input type="tel" className={inputClass} name="phone" value={formData.phone} onChange={handleChange} placeholder="예: 010-1234-5678" required />
+
+                        {/* Row 2: Booker Info */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label className={labelClass}>예약자명</label>
+                                <input type="text" className={inputClass} name="name" value={formData.name} onChange={handleChange} placeholder="이름을 입력해주세요" required />
+                            </div>
+                            <div>
+                                <label className={labelClass}>연락처</label>
+                                <input type="tel" className={inputClass} name="phone" value={formData.phone} onChange={handlePhoneChange} placeholder="숫자만 입력 (자동 하이픈)" required />
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Row 3: Times */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label className={labelClass}>차량 맡기는 시간</label>
-                            <input type="datetime-local" className={inputClass} name="drop_off_time" value={formData.drop_off_time} onChange={handleChange} required />
+                        {/* Row 3: Times */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label className={labelClass}>차량 맡기는 시간</label>
+                                <input type="datetime-local" className={inputClass} name="drop_off_time" value={formData.drop_off_time} onChange={handleChange} required />
+                            </div>
+                            <div>
+                                <label className={labelClass}>차량 찾는 시간</label>
+                                <input type="datetime-local" className={inputClass} name="pick_up_time" value={formData.pick_up_time} onChange={handleChange} required />
+                            </div>
                         </div>
+
+                        {/* Password */}
                         <div>
-                            <label className={labelClass}>차량 찾는 시간</label>
-                            <input type="datetime-local" className={inputClass} name="pick_up_time" value={formData.pick_up_time} onChange={handleChange} required />
+                            <label className={labelClass}>비밀번호 (예약 확인용)</label>
+                            <input type="password" className={inputClass} name="password" value={formData.password} onChange={handleChange} placeholder="비밀번호를 입력해주세요" required />
                         </div>
-                    </div>
 
-                    {/* Password */}
-                    <div>
-                        <label className={labelClass}>비밀번호 (예약 확인용)</label>
-                        <input type="password" className={inputClass} name="password" value={formData.password} onChange={handleChange} placeholder="비밀번호를 입력해주세요" required />
-                    </div>
+                        {/* Memo */}
+                        <div>
+                            <label className={labelClass}>메모</label>
+                            <textarea className={`${inputClass} min-h-[120px] resize-y py-3`} name="memo" value={formData.memo} onChange={handleChange} placeholder="추가 요청사항을 적어주세요" />
+                        </div>
 
-                    {/* Memo */}
-                    <div>
-                        <label className={labelClass}>메모</label>
-                        <textarea className={`${inputClass} min-h-[120px] resize-y py-3`} name="memo" value={formData.memo} onChange={handleChange} placeholder="추가 요청사항을 적어주세요" />
-                    </div>
-
-                    {/* Submit */}
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full py-4 bg-brand hover:bg-brand-light text-white rounded-xl font-bold text-lg shadow-md shadow-brand/20 hover:shadow-lg hover:shadow-brand/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5 disabled:hover:translate-y-0"
-                    >
-                        {loading ? '예약 중...' : '예약하기'}
-                    </button>
-                </form>
+                        {/* Submit */}
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full py-4 bg-brand hover:bg-brand-light text-white rounded-xl font-bold text-lg shadow-md shadow-brand/20 hover:shadow-lg hover:shadow-brand/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5 disabled:hover:translate-y-0"
+                        >
+                            {loading ? '예약 중...' : '예약하기'}
+                        </button>
+                    </form>
+                )}
             </div>
         </div>
     );
