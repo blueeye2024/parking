@@ -74,7 +74,7 @@ const Reserve = () => {
     const labelClass = "block text-sm font-semibold text-slate-700 mb-2";
 
     return (
-        <div className="space-y-12 animate-fade-in">
+        <div className="space-y-8 animate-fade-in">
             {/* Hero Section */}
             <div className="relative overflow-hidden rounded-2xl min-h-[380px] flex-center flex-col text-center px-6 py-16">
                 {/* Background */}
@@ -103,7 +103,7 @@ const Reserve = () => {
             </div>
 
             {/* Price Info Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {/* Price Comparison Card */}
                 <div className="group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center cursor-default
                     hover:shadow-[0_12px_28px_-6px_rgba(239,68,68,0.25)] hover:-translate-y-2 hover:scale-[1.03] hover:border-red-300
@@ -123,7 +123,7 @@ const Reserve = () => {
                     <div key={i} className={`group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center cursor-default
                         hover:shadow-[0_12px_28px_-6px_rgba(239,68,68,0.25)] hover:-translate-y-2 hover:scale-[1.03] hover:border-red-300
                         transition-all duration-300 ease-out border-t-4 border-t-slate-200`}>
-                        <p className="text-sm font-medium text-slate-500 mb-2 group-hover:text-red-500 transition-colors duration-300">{item.label}</p>
+                        <p className="text-sm font-medium text-slate-500 mb-4 group-hover:text-red-500 transition-colors duration-300">{item.label}</p>
                         <p className="text-3xl font-extrabold text-slate-900 group-hover:text-red-600 transition-colors duration-300">
                             {item.value}
                             {item.unit && <span className="text-lg font-semibold text-slate-500 ml-1 group-hover:text-red-400 transition-colors duration-300">{item.unit}</span>}
