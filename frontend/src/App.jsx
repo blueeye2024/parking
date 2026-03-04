@@ -82,7 +82,7 @@ function App() {
       <div className="flex flex-col min-h-screen">
         <Navigation />
 
-        <main className={`flex-1 w-full mx-auto px-4 sm:px-6 py-6 ${location.pathname === '/admin' ? 'max-w-full' : 'max-w-6xl'}`}>
+        <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6">
           <Routes>
             <Route path="/" element={<Reserve />} />
             <Route path="/about" element={<AboutUs />} />
