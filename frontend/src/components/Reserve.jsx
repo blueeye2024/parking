@@ -22,6 +22,12 @@ const Reserve = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    // Car number: only Korean + digits, no spaces
+    const handleCarNumberChange = (e) => {
+        const filtered = e.target.value.replace(/[^0-9가-힣]/g, '');
+        setFormData(prev => ({ ...prev, car_number: filtered }));
+    };
+
     // Phone auto-format: numbers only → auto-insert dashes (010-1234-5678)
     const handlePhoneChange = (e) => {
         const raw = e.target.value.replace(/[^0-9]/g, '').slice(0, 11);
@@ -168,7 +174,7 @@ const Reserve = () => {
                             </div>
                             <div>
                                 <label className={labelClass}>차량번호</label>
-                                <input type="text" className={inputClass} name="car_number" value={formData.car_number} onChange={handleChange} placeholder="예: 12가 3456" required />
+                                <input type="text" className={inputClass} name="car_number" value={formData.car_number} onChange={handleCarNumberChange} placeholder="예: 12가3456" required />
                             </div>
                         </div>
 

@@ -13,6 +13,11 @@ const CheckReservation = () => {
         setCredentials(prev => ({ ...prev, [name]: value }));
     };
 
+    const handleCarNumberChange = (e) => {
+        const filtered = e.target.value.replace(/[^0-9가-힣]/g, '');
+        setCredentials(prev => ({ ...prev, car_number: filtered }));
+    };
+
     const handleCheck = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -71,7 +76,7 @@ const CheckReservation = () => {
                         <form onSubmit={handleCheck} className="space-y-5">
                             <div>
                                 <label className="block text-sm font-semibold text-slate-700 mb-2">차량번호</label>
-                                <input type="text" className={inputClass} name="car_number" value={credentials.car_number} onChange={handleChange} placeholder="예: 12가 3456" required />
+                                <input type="text" className={inputClass} name="car_number" value={credentials.car_number} onChange={handleCarNumberChange} placeholder="예: 12가3456" required />
                             </div>
                             <div>
                                 <label className="block text-sm font-semibold text-slate-700 mb-2">비밀번호</label>
