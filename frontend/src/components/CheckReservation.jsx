@@ -14,7 +14,7 @@ const CheckReservation = () => {
     };
 
     const handleCarNumberChange = (e) => {
-        const filtered = e.target.value.replace(/[^0-9가-힣]/g, '');
+        const filtered = e.target.value.replace(/[^0-9ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
         setCredentials(prev => ({ ...prev, car_number: filtered }));
     };
 
