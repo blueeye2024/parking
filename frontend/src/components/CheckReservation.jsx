@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FaShieldAlt } from 'react-icons/fa';
 
 const CheckReservation = () => {
-    const [credentials, setCredentials] = useState({ phone: '', password: '' });
+    const [credentials, setCredentials] = useState({ car_number: '', password: '' });
     const [reservation, setReservation] = useState(null);
     const [status, setStatus] = useState({ type: '', message: '' });
     const [loading, setLoading] = useState(false);
@@ -60,8 +60,8 @@ const CheckReservation = () => {
                     {/* Alert */}
                     {status.message && (
                         <div className={`p-4 rounded-xl mb-6 text-sm font-medium ${status.type === 'success'
-                                ? 'bg-emerald-50 border border-emerald-200 text-emerald-700'
-                                : 'bg-orange-50 border border-orange-200 text-orange-600'
+                            ? 'bg-emerald-50 border border-emerald-200 text-emerald-700'
+                            : 'bg-orange-50 border border-orange-200 text-orange-600'
                             }`}>
                             {status.message}
                         </div>
@@ -70,8 +70,8 @@ const CheckReservation = () => {
                     {!reservation ? (
                         <form onSubmit={handleCheck} className="space-y-5">
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">연락처</label>
-                                <input type="tel" className={inputClass} name="phone" value={credentials.phone} onChange={handleChange} placeholder="예: 010-1234-5678" required />
+                                <label className="block text-sm font-semibold text-slate-700 mb-2">차량번호</label>
+                                <input type="text" className={inputClass} name="car_number" value={credentials.car_number} onChange={handleChange} placeholder="예: 12가 3456" required />
                             </div>
                             <div>
                                 <label className="block text-sm font-semibold text-slate-700 mb-2">비밀번호</label>
@@ -105,7 +105,7 @@ const CheckReservation = () => {
                             </div>
                             <button
                                 className="w-full py-4 mt-6 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-base transition-colors"
-                                onClick={() => { setReservation(null); setCredentials({ phone: '', password: '' }); setStatus({ type: '', message: '' }); }}
+                                onClick={() => { setReservation(null); setCredentials({ car_number: '', password: '' }); setStatus({ type: '', message: '' }); }}
                             >
                                 다른 예약 조회하기
                             </button>

@@ -126,15 +126,15 @@ app.post('/api/reservations', async (req, res) => {
 
 // POST /api/reservations/check - Check a reservation
 app.post('/api/reservations/check', async (req, res) => {
-  const { phone, password } = req.body;
+  const { car_number, password } = req.body;
 
-  if (!phone || !password) {
-    return res.status(400).json({ error: 'Phone and password are required' });
+  if (!car_number || !password) {
+    return res.status(400).json({ error: '차량번호와 비밀번호를 입력해주세요.' });
   }
 
   try {
-    const query = 'SELECT * FROM reservations WHERE phone = ? ORDER BY created_at DESC';
-    const [rows] = await pool.execute(query, [phone]);
+    const query = 'SELECT * FROM reservations WHERE car_number = ? ORDER BY created_at DESC';
+    const [rows] = await pool.execute(query, [car_number]);
 
     if (rows.length === 0) {
       return res.status(404).json({ error: 'Reservation not found' });
