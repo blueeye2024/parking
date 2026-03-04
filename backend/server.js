@@ -93,8 +93,8 @@ app.post('/api/reservations', async (req, res) => {
     const price = days * 5000;
 
     const query = `
-      INSERT INTO reservations (car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, password, days, price)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO reservations (car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, password, source_type, days, price)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'WEB', ?, ?)
     `;
     const values = [car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, hashedPassword, days, price];
 
