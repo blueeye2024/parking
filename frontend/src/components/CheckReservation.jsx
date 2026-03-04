@@ -99,7 +99,7 @@ const CheckReservation = () => {
                                     { label: '차량종류', value: reservation.car_type },
                                     { label: '차량번호', value: reservation.car_number },
                                     { label: '맡기는 시간', value: formatDate(reservation.drop_off_time) },
-                                    { label: '찾는 시간', value: formatDate(reservation.pick_up_time) },
+                                    { label: '공항 귀국 시간', value: formatDate(reservation.pick_up_time) },
                                     ...(reservation.memo ? [{ label: '메모', value: reservation.memo }] : []),
                                 ].map((row, i) => (
                                     <div key={i} className="flex py-3.5">

@@ -135,7 +135,7 @@ const Reserve = () => {
             {/* Reservation Form */}
             <div id="reserve-form" className="bg-white rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-slate-100 animate-slide-up">
                 <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-8 tracking-tight">
-                    주차 대행 예약하기
+                    주차장 이용 예약하기
                 </h2>
 
                 {status.message && (
@@ -156,7 +156,7 @@ const Reserve = () => {
                                 { label: '차량종류', value: completedReservation.car_type },
                                 { label: '차량번호', value: completedReservation.car_number },
                                 { label: '맡기는 시간', value: formatDateTime(completedReservation.drop_off_time) },
-                                { label: '찾는 시간', value: formatDateTime(completedReservation.pick_up_time) },
+                                { label: '공항 귀국 시간', value: formatDateTime(completedReservation.pick_up_time) },
                                 { label: '이용일수', value: `${completedReservation.days}일` },
                                 { label: '예상 금액', value: `${completedReservation.price?.toLocaleString()}원` },
                                 ...(completedReservation.memo ? [{ label: '메모', value: completedReservation.memo }] : []),
@@ -207,7 +207,7 @@ const Reserve = () => {
                                 <input type="datetime-local" className={inputClass} name="drop_off_time" value={formData.drop_off_time} onChange={handleChange} required />
                             </div>
                             <div>
-                                <label className={labelClass}>차량 찾는 시간</label>
+                                <label className={labelClass}>공항 귀국 시간</label>
                                 <input type="datetime-local" className={inputClass} name="pick_up_time" value={formData.pick_up_time} onChange={handleChange} required />
                             </div>
                         </div>
