@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaUserShield, FaSignOutAlt, FaSync } from 'react-icons/fa';
+import { FaUserShield, FaSignOutAlt, FaSync, FaSearch } from 'react-icons/fa';
+
+const ITEMS_PER_PAGE = 10;
 
 const Admin = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -11,6 +13,12 @@ const Admin = () => {
     const [reservations, setReservations] = useState([]);
     const [loading, setLoading] = useState(false);
     const [fetchError, setFetchError] = useState('');
+
+    // Search & Filter
+    const [searchText, setSearchText] = useState('');
+    const [dateFrom, setDateFrom] = useState('');
+    const [dateTo, setDateTo] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         const adminToken = localStorage.getItem('adminToken');
@@ -68,6 +76,35 @@ const Admin = () => {
 
     const inputClass = "w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3.5 text-base focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand focus:bg-white transition-all duration-200 placeholder:text-slate-400";
 
+    // --- Filtering ---
+    const filtered = reservations.filter((r) => {
+        // Text search
+        if (searchText) {
+            const q = searchText.toLowerCase();
+            const match = [r.name, r.phone, r.car_number, r.car_type]
+                .some(v => v && v.toLowerCase().includes(q));
+            if (!match) return false;
+        }
+        // Date range (based on created_at)
+        if (dateFrom) {
+            const from = new Date(dateFrom);
+            if (new Date(r.created_at) < from) return false;
+        }
+        if (dateTo) {
+            const to = new Date(dateTo + 'T23:59:59');
+            if (new Date(r.created_at) > to) return false;
+        }
+        return true;
+    });
+
+    // --- Pagination ---
+    const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+    const safeCurrentPage = Math.min(currentPage, totalPages);
+    const paginatedData = filtered.slice((safeCurrentPage - 1) * ITEMS_PER_PAGE, safeCurrentPage * ITEMS_PER_PAGE);
+
+    // Reset page when filters change
+    useEffect(() => { setCurrentPage(1); }, [searchText, dateFrom, dateTo]);
+
     // Login Screen
     if (!isAuthenticated) {
         return (
@@ -102,12 +139,12 @@ const Admin = () => {
 
     // Dashboard Screen
     return (
-        <div className="animate-fade-in space-y-6">
+        <div className="animate-fade-in space-y-5">
             {/* Header Bar */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                 <h2 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
                     <FaUserShield className="text-brand" /> 예약 관리
-                    <span className="text-sm font-normal text-slate-400 ml-2">총 {reservations.length}건</span>
+                    <span className="text-sm font-normal text-slate-400 ml-2">총 {filtered.length}건</span>
                 </h2>
                 <div className="flex items-center gap-5 text-base">
                     <button onClick={() => fetchReservations(localStorage.getItem('adminToken'))} className="text-brand font-semibold flex items-center gap-1 hover:text-brand-light transition-colors">
@@ -116,6 +153,47 @@ const Admin = () => {
                     <button onClick={handleLogout} className="text-slate-500 font-semibold flex items-center gap-1 hover:text-slate-700 transition-colors">
                         <FaSignOutAlt /> 로그아웃
                     </button>
+                </div>
+            </div>
+
+            {/* Search & Filter Bar */}
+            <div className="bg-white rounded-2xl p-4 shadow-sm ring-1 ring-slate-100">
+                <div className="flex flex-col md:flex-row gap-3">
+                    {/* Text Search */}
+                    <div className="relative flex-1">
+                        <FaSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm" />
+                        <input
+                            type="text"
+                            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all placeholder:text-slate-400"
+                            placeholder="이름, 연락처, 차량번호, 차종 검색"
+                            value={searchText}
+                            onChange={(e) => setSearchText(e.target.value)}
+                        />
+                    </div>
+                    {/* Date Range */}
+                    <div className="flex items-center gap-2">
+                        <input
+                            type="date"
+                            className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-base focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all"
+                            value={dateFrom}
+                            onChange={(e) => setDateFrom(e.target.value)}
+                        />
+                        <span className="text-slate-400 font-medium">~</span>
+                        <input
+                            type="date"
+                            className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-base focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-all"
+                            value={dateTo}
+                            onChange={(e) => setDateTo(e.target.value)}
+                        />
+                        {(searchText || dateFrom || dateTo) && (
+                            <button
+                                onClick={() => { setSearchText(''); setDateFrom(''); setDateTo(''); }}
+                                className="text-sm text-slate-500 hover:text-slate-700 font-medium whitespace-nowrap"
+                            >
+                                초기화
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
 
@@ -129,8 +207,10 @@ const Admin = () => {
             <div className="bg-white rounded-2xl shadow-sm ring-1 ring-slate-100 overflow-hidden">
                 {loading ? (
                     <p className="text-center py-16 text-slate-400">데이터를 불러오는 중...</p>
-                ) : reservations.length === 0 ? (
-                    <p className="text-center py-16 text-slate-400">등록된 예약 정보가 없습니다.</p>
+                ) : paginatedData.length === 0 ? (
+                    <p className="text-center py-16 text-slate-400">
+                        {filtered.length === 0 && reservations.length > 0 ? '검색 결과가 없습니다.' : '등록된 예약 정보가 없습니다.'}
+                    </p>
                 ) : (
                     <div className="overflow-x-auto">
                         <table className="w-full text-base">
@@ -149,7 +229,7 @@ const Admin = () => {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100">
-                                {reservations.map((r) => (
+                                {paginatedData.map((r) => (
                                     <tr key={r.id} className="hover:bg-slate-50/50 transition-colors">
                                         <td className="px-5 py-4 text-slate-400 whitespace-nowrap">#{r.id}</td>
                                         <td className="px-5 py-4 font-semibold text-slate-900 whitespace-nowrap">{r.name}</td>
@@ -168,6 +248,39 @@ const Admin = () => {
                                 ))}
                             </tbody>
                         </table>
+                    </div>
+                )}
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                    <div className="flex items-center justify-center gap-1 px-5 py-4 border-t border-slate-100">
+                        <button
+                            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                            disabled={safeCurrentPage <= 1}
+                            className="px-3 py-2 rounded-lg text-sm font-medium text-slate-500 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                        >
+                            이전
+                        </button>
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                            <button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                className={`w-10 h-10 rounded-lg text-sm font-semibold transition-colors
+                                    ${page === safeCurrentPage
+                                        ? 'bg-brand text-white shadow-sm'
+                                        : 'text-slate-500 hover:bg-slate-100'
+                                    }`}
+                            >
+                                {page}
+                            </button>
+                        ))}
+                        <button
+                            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                            disabled={safeCurrentPage >= totalPages}
+                            className="px-3 py-2 rounded-lg text-sm font-medium text-slate-500 hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                        >
+                            다음
+                        </button>
                     </div>
                 )}
             </div>
