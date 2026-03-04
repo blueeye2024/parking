@@ -106,7 +106,7 @@ const Reserve = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {[
                     { label: '1일 주차 요금', value: '5,000', unit: '원', highlight: true },
-                    { label: '무료 셔틀 운행', value: '07:00 ~ 22:00', unit: '' },
+                    { label: '무료 셔틀 운행', value: '04:00 ~ 익일 01:00', unit: '' },
                     { label: '공항까지 소요시간', value: '7', unit: '분' },
                 ].map((item, i) => (
                     <div key={i} className={`group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center cursor-default

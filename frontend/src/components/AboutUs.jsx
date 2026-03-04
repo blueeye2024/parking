@@ -3,7 +3,7 @@ import { FaTag, FaBus, FaParking, FaShieldAlt, FaMapMarkerAlt, FaHandshake } fro
 
 const features = [
     { icon: FaTag, title: '압도적인 가격 경쟁력', desc: '공항 내 주차장 대비 50% 저렴한 1일 5,000원의 파격적인 요금!' },
-    { icon: FaBus, title: '신속한 셔틀 서비스', desc: '주차장에서 공항까지 무료 셔틀버스를 운행합니다. (운행 시간: 07:00 ~ 22:00)' },
+    { icon: FaBus, title: '신속한 셔틀 서비스', desc: '주차장에서 공항까지 무료 셔틀버스를 운행합니다. (운행 시간: 04:00 ~ 익일 01:00)' },
     { icon: FaParking, title: '넉넉한 주차 공간', desc: '자동차 400대를 동시에 수용할 수 있는 대규모 전용 주차장 완비.' },
     { icon: FaShieldAlt, title: '철저한 안전 관리', desc: '24시간 CCTV 및 무인 차단기 설치로 도난 예방. 운행 차량 종합보험 및 주차 배상 책임보험 가입 완료.' },
 ];
@@ -74,7 +74,7 @@ const AboutUs = () => {
                     {[
                         { label: '위치', value: '충북 청주시 청원구 외남동 76-1 (청주공항 7분 거리)' },
                         { label: '이용 요금', value: '1일 5,000원 (정찰제)' },
-                        { label: '셔틀 운행', value: '오전 7시 ~ 오후 10시' },
+                        { label: '셔틀 운행', value: '새벽 4시 ~ 익일 새벽 1시' },
                         { label: '문의 및 예약', value: '043-298-1234 / 010-5178-4756' },
                     ].map((item, i) => (
                         <div key={i} className="flex items-start gap-2">
