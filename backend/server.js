@@ -100,12 +100,15 @@ app.post('/api/reservations', async (req, res) => {
       reservation: { car_type, car_number, name, phone, drop_off_time, pick_up_time, memo }
     });
 
+    // Format datetime for SMS (2026-03-05T14:00 → 2026-03-05 14:00)
+    const fmtDT = (dt) => dt ? dt.replace('T', ' ') : '';
+
     // Send SMS to customer
-    const customerMsg = `[청주공항주차] 예약완료!\n성함: ${name}\n차량: ${car_number}\n차량입고: ${drop_off_time}\n차량출고: ${pick_up_time}`;
+    const customerMsg = `[청주공항주차] 예약완료!\n성함: ${name}\n차량: ${car_number}\n차량입고: ${fmtDT(drop_off_time)}\n차량출고: ${fmtDT(pick_up_time)}`;
     sendSMS(phone, customerMsg);
 
     // Send SMS to admin
-    const adminMsg = `[청주공항주차] 새 예약!\n성함: ${name}\n연락처: ${phone}\n차량: ${car_number}\n입고: ${drop_off_time}\n출고: ${pick_up_time}`;
+    const adminMsg = `[청주공항주차] 새 예약!\n성함: ${name}\n연락처: ${phone}\n차량: ${car_number}\n입고: ${fmtDT(drop_off_time)}\n출고: ${fmtDT(pick_up_time)}`;
     sendSMS('010-8286-5910', adminMsg);
 
   } catch (err) {
