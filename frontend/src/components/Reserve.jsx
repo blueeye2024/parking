@@ -217,21 +217,19 @@ const Reserve = () => {
                             </div>
 
                             {/* Hand Wash */}
-                            <div className="flex items-center justify-between bg-slate-50 rounded-xl px-4 py-3.5 border border-slate-200">
-                                <div className="flex items-center gap-2">
-                                    <span className="text-sm font-semibold text-slate-700">손세차 신청</span>
-                                    <span className="text-xs text-slate-400">(30,000원~)</span>
-                                    <button type="button" onClick={() => setShowWashModal(true)} className="text-xs text-brand hover:text-brand-light font-semibold underline underline-offset-2 transition-colors">상세보기</button>
-                                </div>
+                            <div>
+                                <label className={labelClass}>손세차 신청</label>
                                 <div className="flex items-center gap-4">
                                     <label className="flex items-center gap-1.5 cursor-pointer">
                                         <input type="radio" name="hand_wash" value="N" checked={formData.hand_wash === 'N'} onChange={handleChange} className="w-4 h-4 text-brand" />
-                                        <span className="text-sm text-slate-600">안함</span>
+                                        <span className="text-sm text-slate-700">미신청</span>
                                     </label>
                                     <label className="flex items-center gap-1.5 cursor-pointer">
                                         <input type="radio" name="hand_wash" value="Y" checked={formData.hand_wash === 'Y'} onChange={handleChange} className="w-4 h-4 text-brand" />
                                         <span className="text-sm text-slate-700 font-semibold">신청</span>
                                     </label>
+                                    <span className="text-xs text-slate-400 ml-1">(30,000원~)</span>
+                                    <button type="button" onClick={() => setShowWashModal(true)} className="text-xs text-brand hover:text-brand-light font-semibold underline underline-offset-2 transition-colors">상세보기</button>
                                 </div>
                             </div>
 
