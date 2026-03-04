@@ -109,7 +109,7 @@ const Admin = () => {
                     <FaUserShield className="text-brand" /> 예약 관리
                     <span className="text-sm font-normal text-slate-400 ml-2">총 {reservations.length}건</span>
                 </h2>
-                <div className="flex items-center gap-4 text-sm">
+                <div className="flex items-center gap-5 text-base">
                     <button onClick={() => fetchReservations(localStorage.getItem('adminToken'))} className="text-brand font-semibold flex items-center gap-1 hover:text-brand-light transition-colors">
                         <FaSync className={loading ? 'animate-spin' : ''} /> 새로고침
                     </button>
@@ -133,37 +133,37 @@ const Admin = () => {
                     <p className="text-center py-16 text-slate-400">등록된 예약 정보가 없습니다.</p>
                 ) : (
                     <div className="overflow-x-auto">
-                        <table className="w-full text-sm">
+                        <table className="w-full text-base">
                             <thead>
                                 <tr className="bg-slate-50 border-b-2 border-brand/20">
-                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">ID</th>
-                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">예약자</th>
-                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">연락처</th>
-                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">차량</th>
-                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">입고</th>
-                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">출고</th>
-                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">일수</th>
-                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">금액</th>
-                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">메모</th>
-                                    <th className="px-4 py-3 text-left font-semibold text-slate-500 whitespace-nowrap">접수일</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">ID</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">예약자</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">연락처</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">차량</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">입고</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">출고</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">일수</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">금액</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">메모</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">접수일</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100">
                                 {reservations.map((r) => (
                                     <tr key={r.id} className="hover:bg-slate-50/50 transition-colors">
-                                        <td className="px-4 py-3 text-slate-400 whitespace-nowrap">#{r.id}</td>
-                                        <td className="px-4 py-3 font-semibold text-slate-900 whitespace-nowrap">{r.name}</td>
-                                        <td className="px-4 py-3 text-slate-600 whitespace-nowrap">{r.phone}</td>
-                                        <td className="px-4 py-3 whitespace-nowrap">
+                                        <td className="px-5 py-4 text-slate-400 whitespace-nowrap">#{r.id}</td>
+                                        <td className="px-5 py-4 font-semibold text-slate-900 whitespace-nowrap">{r.name}</td>
+                                        <td className="px-5 py-4 text-slate-600 whitespace-nowrap">{r.phone}</td>
+                                        <td className="px-5 py-4 whitespace-nowrap">
                                             <span className="text-slate-500">{r.car_type}</span>
                                             <span className="font-semibold text-slate-900 ml-1">{r.car_number}</span>
                                         </td>
-                                        <td className="px-4 py-3 text-brand whitespace-nowrap">{formatDT(r.drop_off_time)}</td>
-                                        <td className="px-4 py-3 text-slate-600 whitespace-nowrap">{formatDT(r.pick_up_time)}</td>
-                                        <td className="px-4 py-3 text-slate-900 font-semibold whitespace-nowrap">{r.days || '-'}일</td>
-                                        <td className="px-4 py-3 text-slate-900 font-semibold whitespace-nowrap">{r.price ? r.price.toLocaleString() + '원' : '-'}</td>
-                                        <td className="px-4 py-3 text-slate-500 max-w-[140px] truncate">{r.memo || '-'}</td>
-                                        <td className="px-4 py-3 text-xs text-slate-400 whitespace-nowrap">{formatDT(r.created_at)}</td>
+                                        <td className="px-5 py-4 text-brand whitespace-nowrap">{formatDT(r.drop_off_time)}</td>
+                                        <td className="px-5 py-4 text-slate-600 whitespace-nowrap">{formatDT(r.pick_up_time)}</td>
+                                        <td className="px-5 py-4 text-slate-900 font-semibold whitespace-nowrap">{r.days || '-'}일</td>
+                                        <td className="px-5 py-4 text-slate-900 font-semibold whitespace-nowrap">{r.price ? r.price.toLocaleString() + '원' : '-'}</td>
+                                        <td className="px-5 py-4 text-slate-500 max-w-[140px] truncate">{r.memo || '-'}</td>
+                                        <td className="px-5 py-4 text-sm text-slate-400 whitespace-nowrap">{formatDT(r.created_at)}</td>
                                     </tr>
                                 ))}
                             </tbody>
