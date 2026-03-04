@@ -85,11 +85,18 @@ app.post('/api/reservations', async (req, res) => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
+    // Auto-calculate parking days and price
+    const dropDate = new Date(drop_off_time);
+    const pickDate = new Date(pick_up_time);
+    const diffMs = pickDate - dropDate;
+    const days = Math.max(1, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
+    const price = days * 5000;
+
     const query = `
-      INSERT INTO reservations (car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, password)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO reservations (car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, password, days, price)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
-    const values = [car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, hashedPassword];
+    const values = [car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, hashedPassword, days, price];
 
     const [result] = await pool.execute(query, values);
 
@@ -97,18 +104,18 @@ app.post('/api/reservations', async (req, res) => {
     res.status(201).json({
       message: 'Reservation created successfully',
       id: result.insertId,
-      reservation: { car_type, car_number, name, phone, drop_off_time, pick_up_time, memo }
+      reservation: { car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, days, price }
     });
 
     // Format datetime for SMS (2026-03-05T14:00 → 2026-03-05 14:00)
     const fmtDT = (dt) => dt ? dt.replace('T', ' ') : '';
 
     // Send SMS to customer
-    const customerMsg = `[청주공항주차] 예약완료!\n성함: ${name}\n차량: ${car_number}\n차량입고: ${fmtDT(drop_off_time)}\n차량출고: ${fmtDT(pick_up_time)}`;
+    const customerMsg = `[청주공항주차] 예약완료!\n성함: ${name}\n차량: ${car_number}\n입고: ${fmtDT(drop_off_time)}\n출고: ${fmtDT(pick_up_time)}\n${days}일 / ${price.toLocaleString()}원`;
     sendSMS(phone, customerMsg);
 
     // Send SMS to admin
-    const adminMsg = `[청주공항주차] 새 예약!\n성함: ${name}\n연락처: ${phone}\n차량: ${car_number}\n입고: ${fmtDT(drop_off_time)}\n출고: ${fmtDT(pick_up_time)}`;
+    const adminMsg = `[청주공항주차] 새 예약!\n성함: ${name}\n연락처: ${phone}\n차량: ${car_number}\n입고: ${fmtDT(drop_off_time)}\n출고: ${fmtDT(pick_up_time)}\n${days}일 / ${price.toLocaleString()}원`;
     sendSMS('010-8286-5910', adminMsg);
 
   } catch (err) {

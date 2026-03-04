@@ -141,6 +141,8 @@ const Reserve = () => {
                                 { label: '차량번호', value: completedReservation.car_number },
                                 { label: '맡기는 시간', value: formatDateTime(completedReservation.drop_off_time) },
                                 { label: '찾는 시간', value: formatDateTime(completedReservation.pick_up_time) },
+                                { label: '이용일수', value: `${completedReservation.days}일` },
+                                { label: '예상 금액', value: `${completedReservation.price?.toLocaleString()}원` },
                                 ...(completedReservation.memo ? [{ label: '메모', value: completedReservation.memo }] : []),
                             ].map((row, i) => (
                                 <div key={i} className="flex py-3.5">
