@@ -10,7 +10,8 @@ const Reserve = () => {
         drop_off_time: '',
         pick_up_time: '',
         memo: '',
-        password: ''
+        password: '',
+        hand_wash: 'N'
     });
 
     const [status, setStatus] = useState({ type: '', message: '' });
@@ -159,6 +160,7 @@ const Reserve = () => {
                                 { label: '공항 귀국 시간', value: formatDateTime(completedReservation.pick_up_time) },
                                 { label: '이용일수', value: `${completedReservation.days}일` },
                                 { label: '예상 금액', value: `${completedReservation.price?.toLocaleString()}원` },
+                                { label: '손세차', value: completedReservation.hand_wash === 'Y' ? '신청 (3만원~)' : '미신청' },
                                 ...(completedReservation.memo ? [{ label: '메모', value: completedReservation.memo }] : []),
                             ].map((row, i) => (
                                 <div key={i} className="flex py-3.5">
@@ -209,6 +211,21 @@ const Reserve = () => {
                             <div>
                                 <label className={labelClass}>공항 귀국 시간</label>
                                 <input type="datetime-local" className={inputClass} name="pick_up_time" value={formData.pick_up_time} onChange={handleChange} required />
+                            </div>
+                        </div>
+
+                        {/* Hand Wash */}
+                        <div>
+                            <label className={labelClass}>손세차 신청 <span className="text-slate-400 font-normal">(3만원~)</span></label>
+                            <div className="flex items-center gap-4 mt-1">
+                                <label className="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="hand_wash" value="N" checked={formData.hand_wash === 'N'} onChange={handleChange} className="w-4 h-4 text-brand" />
+                                    <span className="text-sm text-slate-700">신청 안함</span>
+                                </label>
+                                <label className="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="hand_wash" value="Y" checked={formData.hand_wash === 'Y'} onChange={handleChange} className="w-4 h-4 text-brand" />
+                                    <span className="text-sm text-slate-700">신청</span>
+                                </label>
                             </div>
                         </div>
 

@@ -74,8 +74,11 @@ app.post('/api/reservations', async (req, res) => {
     drop_off_time,
     pick_up_time,
     memo,
-    password
+    password,
+    hand_wash
   } = req.body;
+
+  const handWashValue = hand_wash === 'Y' ? 'Y' : 'N';
 
   if (!car_type || !car_number || !name || !phone || !drop_off_time || !pick_up_time || !password) {
     return res.status(400).json({ error: 'Missing required fields' });
@@ -93,10 +96,10 @@ app.post('/api/reservations', async (req, res) => {
     const price = days * 5000;
 
     const query = `
-      INSERT INTO reservations (car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, password, source_type, days, price)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'WEB', ?, ?)
+      INSERT INTO reservations (car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, password, source_type, hand_wash, days, price)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'WEB', ?, ?, ?)
     `;
-    const values = [car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, hashedPassword, days, price];
+    const values = [car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, hashedPassword, handWashValue, days, price];
 
     const [result] = await pool.execute(query, values);
 
@@ -104,18 +107,19 @@ app.post('/api/reservations', async (req, res) => {
     res.status(201).json({
       message: 'Reservation created successfully',
       id: result.insertId,
-      reservation: { car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, days, price }
+      reservation: { car_type, car_number, name, phone, drop_off_time, pick_up_time, memo, days, price, hand_wash: handWashValue }
     });
 
     // Format datetime for SMS (2026-03-05T14:00 → 2026-03-05 14:00)
     const fmtDT = (dt) => dt ? dt.replace('T', ' ') : '';
 
     // Send SMS to customer
-    const customerMsg = `[청주공항주차] 예약완료!\n성함: ${name}\n차량: ${car_number}\n입고: ${fmtDT(drop_off_time)}\n출고: ${fmtDT(pick_up_time)}\n${days}일 / ${price.toLocaleString()}원`;
+    const washText = handWashValue === 'Y' ? '\n손세차: 신청' : '';
+    const customerMsg = `[청주공항주차] 예약완료!\n성함: ${name}\n차량: ${car_number}\n입고: ${fmtDT(drop_off_time)}\n출고: ${fmtDT(pick_up_time)}\n${days}일 / ${price.toLocaleString()}원${washText}`;
     sendSMS(phone, customerMsg);
 
     // Send SMS to admin
-    const adminMsg = `[청주공항주차] 새 예약!\n성함: ${name}\n연락처: ${phone}\n차량: ${car_number}\n입고: ${fmtDT(drop_off_time)}\n출고: ${fmtDT(pick_up_time)}\n${days}일 / ${price.toLocaleString()}원`;
+    const adminMsg = `[청주공항주차] 새 예약!\n성함: ${name}\n연락처: ${phone}\n차량: ${car_number}\n입고: ${fmtDT(drop_off_time)}\n출고: ${fmtDT(pick_up_time)}\n${days}일 / ${price.toLocaleString()}원${washText}`;
     sendSMS('010-5178-4756', adminMsg);
 
   } catch (err) {
