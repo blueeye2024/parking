@@ -26,7 +26,7 @@ const Navigation = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2 text-brand-dark font-bold text-xl tracking-tight no-underline" onClick={closeMenu}>
           <FaCar className="text-brand text-2xl" />
-          <span>청주공항 반값셔틀</span>
+          <span>청주공항 반값 셔틀주차장</span>
         </Link>
 
         {/* Desktop Nav */}
