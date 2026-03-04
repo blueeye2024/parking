@@ -137,7 +137,7 @@ app.post('/api/reservations/check', async (req, res) => {
   }
 
   try {
-    const query = 'SELECT * FROM reservations WHERE car_number = ? ORDER BY created_at DESC';
+    const query = "SELECT * FROM reservations WHERE car_number = ? AND source_type = 'WEB' ORDER BY created_at DESC";
     const [rows] = await pool.execute(query, [car_number]);
 
     if (rows.length === 0) {
