@@ -59,7 +59,7 @@ const Reserve = () => {
             setStatus({ type: 'success', message: '예약이 성공적으로 완료되었습니다! 입력하신 번호로 확인 문자가 발송됩니다.' });
             setFormData({
                 car_type: '', car_number: '', name: '', phone: '',
-                drop_off_time: '', pick_up_time: '', memo: '', password: ''
+                drop_off_time: '', pick_up_time: '', memo: '', password: '', hand_wash: 'N'
             });
         } catch (err) {
             console.error(err);
