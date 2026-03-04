@@ -103,7 +103,7 @@ const Reserve = () => {
             </div>
 
             {/* Price Info Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-4">
                 {/* Price Comparison Card */}
                 <div className="group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center cursor-default
                     hover:shadow-[0_12px_28px_-6px_rgba(239,68,68,0.25)] hover:-translate-y-2 hover:scale-[1.03] hover:border-red-300
