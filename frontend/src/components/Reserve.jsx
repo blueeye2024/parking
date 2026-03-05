@@ -9,6 +9,9 @@ const Reserve = () => {
         phone: '',
         drop_off_time: '',
         pick_up_time: '',
+        companions: '',
+        flight_number: '',
+        destination: '',
         memo: '',
         password: '',
         hand_wash: 'N'
@@ -59,7 +62,7 @@ const Reserve = () => {
             setStatus({ type: 'success', message: '예약이 성공적으로 완료되었습니다! 입력하신 번호로 확인 문자가 발송됩니다.' });
             setFormData({
                 car_type: '', car_number: '', name: '', phone: '',
-                drop_off_time: '', pick_up_time: '', memo: '', password: '', hand_wash: 'N'
+                drop_off_time: '', pick_up_time: '', companions: '', flight_number: '', destination: '', memo: '', password: '', hand_wash: 'N'
             });
         } catch (err) {
             console.error(err);
@@ -160,6 +163,9 @@ const Reserve = () => {
                                     { label: '차량번호', value: completedReservation.car_number },
                                     { label: '맡기는 시간', value: formatDateTime(completedReservation.drop_off_time) },
                                     { label: '공항 귀국 시간', value: formatDateTime(completedReservation.pick_up_time) },
+                                    { label: '동행인원', value: completedReservation.companions || '없음' },
+                                    { label: '도착항공편', value: completedReservation.flight_number || '미기재' },
+                                    { label: '여행지', value: completedReservation.destination || '미기재' },
                                     { label: '이용일수', value: `${completedReservation.days}일` },
                                     { label: '예상 금액', value: `${completedReservation.price?.toLocaleString()}원` },
                                     { label: '손세차', value: completedReservation.hand_wash === 'Y' ? '신청 (3만원~)' : '미신청' },
@@ -213,6 +219,22 @@ const Reserve = () => {
                                 <div>
                                     <label className={labelClass}>공항 귀국 시간</label>
                                     <input type="datetime-local" className={inputClass} name="pick_up_time" value={formData.pick_up_time} onChange={handleChange} required />
+                                </div>
+                            </div>
+
+                            {/* Row 4: Travel Info */}
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                                <div>
+                                    <label className={labelClass}>동행인원</label>
+                                    <input type="text" className={inputClass} name="companions" value={formData.companions} onChange={handleChange} placeholder="예: 2명" required />
+                                </div>
+                                <div>
+                                    <label className={labelClass}>도착항공편</label>
+                                    <input type="text" className={inputClass} name="flight_number" value={formData.flight_number} onChange={handleChange} placeholder="예: 이스타, KE1234" required />
+                                </div>
+                                <div>
+                                    <label className={labelClass}>여행지</label>
+                                    <input type="text" className={inputClass} name="destination" value={formData.destination} onChange={handleChange} placeholder="예: 제주도, 오사카" required />
                                 </div>
                             </div>
 

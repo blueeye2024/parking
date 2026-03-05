@@ -81,8 +81,8 @@ const Admin = () => {
         // Text search
         if (searchText) {
             const q = searchText.toLowerCase();
-            const match = [r.name, r.phone, r.car_number, r.car_type]
-                .some(v => v && v.toLowerCase().includes(q));
+            const match = [r.name, r.phone, r.car_number, r.car_type, r.companions, r.flight_number, r.destination]
+                .some(v => v && String(v).toLowerCase().includes(q));
             if (!match) return false;
         }
         // Date range (based on created_at)
@@ -219,6 +219,9 @@ const Admin = () => {
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">ID</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">예약자</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">연락처</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">동행</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">항공편</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">여행지</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">차량</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">입고</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">출고</th>
@@ -235,6 +238,9 @@ const Admin = () => {
                                         <td className="px-5 py-4 text-slate-400 whitespace-nowrap">#{r.id}</td>
                                         <td className="px-5 py-4 font-semibold text-slate-900 whitespace-nowrap">{r.name}</td>
                                         <td className="px-5 py-4 text-slate-600 whitespace-nowrap">{r.phone}</td>
+                                        <td className="px-5 py-4 text-slate-600 whitespace-nowrap">{r.companions || '-'}</td>
+                                        <td className="px-5 py-4 text-slate-600 whitespace-nowrap">{r.flight_number || '-'}</td>
+                                        <td className="px-5 py-4 text-slate-600 whitespace-nowrap">{r.destination || '-'}</td>
                                         <td className="px-5 py-4 whitespace-nowrap">
                                             <span className="text-slate-500">{r.car_type}</span>
                                             <span className="font-semibold text-slate-900 ml-1">{r.car_number}</span>
