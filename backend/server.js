@@ -127,7 +127,7 @@ app.post('/api/reservations', async (req, res) => {
 
     // Send SMS to admin
     const adminMsg = `[청주공항주차] 새 예약!\n성함: ${name}\n연락처: ${phone}\n차량: ${car_number}\n입고: ${fmtDT(drop_off_time)}\n출고: ${fmtDT(pick_up_time)}${companionsText}${flightText}${destText}\n${days}일 / ${price.toLocaleString()}원${washText}`;
-    sendSMS('010-5178-4756', adminMsg);
+    sendSMS('010-5078-4756', adminMsg);
 
   } catch (err) {
     console.error('Error creating reservation:', err);

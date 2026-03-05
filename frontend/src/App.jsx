@@ -105,7 +105,7 @@ function App() {
               <div className="space-y-1.5 md:text-right">
                 <p className="text-white font-semibold text-base mb-2">고객센터</p>
                 <p>043-298-1234</p>
-                <p>010-5178-4756</p>
+                <p>010-5078-4756</p>
               </div>
             </div>
             <div className="border-t border-slate-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-500">
@@ -118,7 +118,7 @@ function App() {
         {/* Mobile Bottom Bar */}
         <div className="fixed bottom-0 left-0 right-0 z-50 flex md:hidden shadow-[0_-4px_16px_rgba(0,0,0,0.08)]">
           <a
-            href="tel:01051784756"
+            href="tel:01050784756"
             className="flex-1 flex-center gap-2 py-4 bg-slate-800 text-white font-bold text-base no-underline"
           >
             <FaPhoneVolume /> 전화 상담

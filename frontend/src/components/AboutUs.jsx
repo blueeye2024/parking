@@ -75,7 +75,7 @@ const AboutUs = () => {
                         { label: '위치', value: '청주시 청원구 외남로104번길 27-10 (네비: 셔틀주차장)' },
                         { label: '이용 요금', value: '1일 5,000원 (정찰제)' },
                         { label: '셔틀 운행', value: '새벽 4시 ~ 익일 새벽 1시' },
-                        { label: '문의 및 예약', value: '043-298-1234 / 010-5178-4756' },
+                        { label: '문의 및 예약', value: '043-298-1234 / 010-5078-4756' },
                     ].map((item, i) => (
                         <div key={i} className="flex items-start gap-2">
                             <span className="font-semibold text-slate-700 flex-shrink-0">{item.label}</span>
