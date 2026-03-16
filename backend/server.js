@@ -87,6 +87,11 @@ app.post('/api/reservations', async (req, res) => {
     return res.status(400).json({ error: '필수 입력 항목이 누락되었습니다.' });
   }
 
+  const dropOffMinutes = new Date(drop_off_time).getMinutes();
+  if (dropOffMinutes % 30 !== 0) {
+    return res.status(400).json({ error: '주차장 도착 시간은 30분 단위(00분, 30분)로만 예약 가능합니다.' });
+  }
+
   const finalCarType = car_type || '미입력';
 
   try {

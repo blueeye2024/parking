@@ -45,6 +45,32 @@ const Reserve = () => {
         setFormData(prev => ({ ...prev, phone: formatted }));
     };
 
+    const handleDropOffBlur = (e) => {
+        const { name, value } = e.target;
+        if (!value) return;
+        const date = new Date(value);
+        if (isNaN(date.getTime())) return;
+        const minutes = date.getMinutes();
+        if (minutes % 30 !== 0) {
+            const roundedMinutes = minutes < 15 ? 0 : (minutes < 45 ? 30 : 0);
+            if (minutes >= 45) {
+                date.setHours(date.getHours() + 1);
+            }
+            date.setMinutes(roundedMinutes);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const mins = String(date.getMinutes()).padStart(2, '0');
+
+            setFormData(prev => ({ ...prev, [name]: `${year}-${month}-${day}T${hours}:${mins}` }));
+            setStatus({ type: 'error', message: '도착 시간은 30분 단위(00분, 30분)로 자동 조정되었습니다.' });
+            setTimeout(() => {
+                setStatus(prev => prev.message === '도착 시간은 30분 단위(00분, 30분)로 자동 조정되었습니다.' ? { type: '', message: '' } : prev);
+            }, 4000);
+        }
+    };
+
     const formatDateTime = (dt) => {
         if (!dt) return '';
         const d = new Date(dt);
@@ -56,6 +82,12 @@ const Reserve = () => {
 
         if (!formData.car_number || !formData.name || !formData.phone || !formData.drop_off_time || !formData.pick_up_time || !formData.companions || !formData.flight_number || !formData.destination || !formData.password) {
             setStatus({ type: 'error', message: '모든 필수 항목(* 표시)을 입력해주세요.' });
+            return;
+        }
+
+        const dropOffMinutes = new Date(formData.drop_off_time).getMinutes();
+        if (dropOffMinutes % 30 !== 0) {
+            setStatus({ type: 'error', message: '주차장 도착 시간은 30분 단위(00분, 30분)로만 예약 가능합니다.' });
             return;
         }
 
@@ -226,7 +258,7 @@ const Reserve = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
                                     <label className={labelClass}>주차장 도착 시간 <span className="text-red-500">*</span></label>
-                                    <input type="datetime-local" className={inputClass} name="drop_off_time" value={formData.drop_off_time} onChange={handleChange} step="1800" required />
+                                    <input type="datetime-local" className={inputClass} name="drop_off_time" value={formData.drop_off_time} onChange={handleChange} onBlur={handleDropOffBlur} step="1800" required />
                                 </div>
                                 <div>
                                     <label className={labelClass}>공항 귀국 시간 <span className="text-red-500">*</span></label>
