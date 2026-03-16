@@ -191,9 +191,9 @@ const Reserve = () => {
                         <form onSubmit={handleSubmit} className="space-y-6">
                             {/* Row 1: Car Info */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div>
+                                <div className="hidden">
                                     <label className={labelClass}>차량종류</label>
-                                    <input type="text" className={inputClass} name="car_type" value={formData.car_type} onChange={handleChange} placeholder="예: 소나타, 산타페" required />
+                                    <input type="text" className={inputClass} name="car_type" value={formData.car_type} onChange={handleChange} placeholder="예: 소나타, 산타페" />
                                 </div>
                                 <div>
                                     <label className={labelClass}>차량번호</label>
@@ -208,7 +208,7 @@ const Reserve = () => {
                                     <input type="text" className={inputClass} name="name" value={formData.name} onChange={handleChange} placeholder="이름을 입력해주세요" required />
                                 </div>
                                 <div>
-                                    <label className={labelClass}>연락처</label>
+                                    <label className={labelClass}>연락처 <span className="text-red-500">*</span></label>
                                     <input type="tel" className={inputClass} name="phone" value={formData.phone} onChange={handlePhoneChange} placeholder="숫자만 입력 (자동 하이픈)" required />
                                 </div>
                             </div>
@@ -216,11 +216,11 @@ const Reserve = () => {
                             {/* Row 3: Times */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
-                                    <label className={labelClass}>주차장 도착 시간</label>
+                                    <label className={labelClass}>주차장 도착 시간 <span className="text-red-500">*</span></label>
                                     <input type="datetime-local" className={inputClass} name="drop_off_time" value={formData.drop_off_time} onChange={handleChange} required />
                                 </div>
                                 <div>
-                                    <label className={labelClass}>공항 귀국 시간</label>
+                                    <label className={labelClass}>공항 귀국 시간 <span className="text-red-500">*</span></label>
                                     <input type="datetime-local" className={inputClass} name="pick_up_time" value={formData.pick_up_time} onChange={handleChange} required />
                                 </div>
                             </div>
@@ -228,21 +228,21 @@ const Reserve = () => {
                             {/* Row 4: Travel Info */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                                 <div>
-                                    <label className={labelClass}>동행인원</label>
+                                    <label className={labelClass}>동행인원(셔틀 탑승 인원) <span className="text-red-500">*</span></label>
                                     <input type="text" className={inputClass} name="companions" value={formData.companions} onChange={handleChange} placeholder="예: 2명" required />
                                 </div>
                                 <div>
-                                    <label className={labelClass}>도착항공편</label>
+                                    <label className={labelClass}>도착항공편 <span className="text-red-500">*</span></label>
                                     <input type="text" className={inputClass} name="flight_number" value={formData.flight_number} onChange={handleChange} placeholder="예: 이스타, KE1234" required />
                                 </div>
                                 <div>
-                                    <label className={labelClass}>여행지</label>
+                                    <label className={labelClass}>여행지 <span className="text-red-500">*</span></label>
                                     <input type="text" className={inputClass} name="destination" value={formData.destination} onChange={handleChange} placeholder="예: 제주도, 오사카" required />
                                 </div>
                             </div>
 
                             {/* Hand Wash */}
-                            <div>
+                            <div className="hidden">
                                 <label className={labelClass}>손세차 신청</label>
                                 <div className="flex items-center gap-4">
                                     <label className="flex items-center gap-1.5 cursor-pointer">
