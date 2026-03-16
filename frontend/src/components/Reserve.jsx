@@ -135,7 +135,7 @@ const Reserve = () => {
                             <span className="text-blue-300">무료 셔틀버스 운행</span>
                         </h1>
                         <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed">
-                            공항 주차장의 <span className="text-white font-bold">딱 절반 가격!</span><br className="sm:hidden" />
+                            <span className="text-white font-bold">전화 문의</span> 043-298-1234 / 010-5078-4756<br className="sm:hidden" />
                             <span className="hidden sm:inline"> · </span>1시간 500원 / 1일 최대 5,000원 <span className="text-sm">(0시 이후 초기화)</span>
                         </p>
                         <p className="text-base sm:text-lg text-slate-300 font-medium mt-1">
