@@ -132,7 +132,7 @@ const Reserve = () => {
                     <div className="relative z-10 max-w-2xl mx-auto space-y-6">
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
                             청주공항 반값 주차,<br />
-                            <span className="text-blue-300">서비스는 프리미엄으로.</span>
+                            <span className="text-blue-300">무료 셔틀버스 운행</span>
                         </h1>
                         <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed">
                             공항 주차장의 <span className="text-white font-bold">딱 절반 가격!</span><br className="sm:hidden" />
