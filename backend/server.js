@@ -120,7 +120,7 @@ app.post('/api/reservations', async (req, res) => {
 
     // Send SMS to customer
     const washText = handWashValue === 'Y' ? '\n손세차: 신청' : '';
-    const companionsText = companions ? `\n동행: ${companions}` : '';
+    const companionsText = companions ? `\n셔틀탑승인원: ${companions}` : '';
     const flightText = flight_number ? `\n항공편: ${flight_number}` : '';
     const destText = destination ? `\n여행지: ${destination}` : '';
 

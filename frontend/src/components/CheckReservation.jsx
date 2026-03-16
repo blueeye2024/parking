@@ -100,7 +100,7 @@ const CheckReservation = () => {
                                     { label: '차량번호', value: reservation.car_number },
                                     { label: '주차장 도착 시간', value: formatDate(reservation.drop_off_time) },
                                     { label: '공항 귀국 시간', value: formatDate(reservation.pick_up_time) },
-                                    { label: '동행인원', value: reservation.companions || '없음' },
+                                    { label: '셔틀탑승인원', value: reservation.companions || '없음' },
                                     { label: '도착항공편', value: reservation.flight_number || '미기재' },
                                     { label: '여행지', value: reservation.destination || '미기재' },
                                     ...(reservation.memo ? [{ label: '메모', value: reservation.memo }] : []),

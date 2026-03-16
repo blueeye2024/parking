@@ -219,7 +219,7 @@ const Admin = () => {
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">ID</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">예약자</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">연락처</th>
-                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">동행</th>
+                                    <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">셔틀탑승인원</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">항공편</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">여행지</th>
                                     <th className="px-5 py-4 text-left font-semibold text-slate-500 whitespace-nowrap">차량</th>

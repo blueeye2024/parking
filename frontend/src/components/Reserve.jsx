@@ -175,7 +175,7 @@ const Reserve = () => {
                                     { label: '차량번호', value: completedReservation.car_number },
                                     { label: '주차장 도착 시간', value: formatDateTime(completedReservation.drop_off_time) },
                                     { label: '공항 귀국 시간', value: formatDateTime(completedReservation.pick_up_time) },
-                                    { label: '동행인원', value: completedReservation.companions || '없음' },
+                                    { label: '셔틀탑승인원', value: completedReservation.companions || '없음' },
                                     { label: '도착항공편', value: completedReservation.flight_number || '미기재' },
                                     { label: '여행지', value: completedReservation.destination || '미기재' },
                                     { label: '이용일수', value: `${completedReservation.days}일` },
@@ -237,7 +237,7 @@ const Reserve = () => {
                             {/* Row 4: Travel Info */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                                 <div>
-                                    <label className={labelClass}>동행인원(셔틀 탑승 인원) <span className="text-red-500">*</span></label>
+                                    <label className={labelClass}>셔틀탑승인원 <span className="text-red-500">*</span></label>
                                     <input type="text" className={inputClass} name="companions" value={formData.companions} onChange={handleChange} placeholder="예: 2명" required />
                                 </div>
                                 <div>
