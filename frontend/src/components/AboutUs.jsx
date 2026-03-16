@@ -2,7 +2,7 @@ import React from 'react';
 import { FaTag, FaBus, FaParking, FaShieldAlt, FaMapMarkerAlt, FaHandshake } from 'react-icons/fa';
 
 const features = [
-    { icon: FaTag, title: '공항 대비 50% 절약', desc: '공항 내 주차장 1일 10,000원, 저희는 1일 5,000원! 동일한 서비스, 절반의 비용으로 스마트한 절약을 경험하세요.' },
+    { icon: FaTag, title: '공항 대비 50% 절약', desc: '공항 내 주차장 1일 10,000원, 저희는 1시간 500원, 1일 최대 5,000원! 동일한 서비스, 절반의 비용으로 스마트한 절약을 경험하세요.' },
     { icon: FaBus, title: '신속한 셔틀 서비스', desc: '주차장에서 공항까지 무료 셔틀버스를 운행합니다. (운행 시간: 04:00 ~ 익일 01:00)' },
     { icon: FaParking, title: '넉넉한 주차 공간', desc: '자동차 400대를 동시에 수용할 수 있는 대규모 전용 주차장 완비.' },
     { icon: FaShieldAlt, title: '철저한 안전 관리', desc: '24시간 CCTV 및 무인 차단기 설치로 도난 예방. 운행 차량 종합보험 및 주차 배상 책임보험 가입 완료.' },
@@ -17,7 +17,7 @@ const AboutUs = () => {
                     청주공항 주차, 이제 절반 가격으로 더 여유롭게!
                 </h2>
                 <p className="text-slate-500 text-base">
-                    주차난 걱정 끝! 1일 5,000원으로 즐기는 스마트한 여행의 시작<br />
+                    주차난 걱정 끝! 1시간 500원, 1일 최대 5,000원으로 즐기는 스마트한 여행의 시작<br />
                     <strong className="text-slate-700">청주공항 반값 셔틀주차장</strong>
                 </p>
             </div>
@@ -73,7 +73,7 @@ const AboutUs = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                     {[
                         { label: '위치', value: '청주시 청원구 외남로104번길 27-10 (네비: 셔틀주차장)' },
-                        { label: '이용 요금', value: '1일 5,000원 (정찰제)' },
+                        { label: '이용 요금', value: '1시간 500원, 1일 최대 5,000원 (출차 시 차단기 아이파킹 결제)' },
                         { label: '셔틀 운행', value: '새벽 4시 ~ 익일 새벽 1시' },
                         { label: '문의 및 예약', value: '043-298-1234 / 010-5078-4756' },
                     ].map((item, i) => (
