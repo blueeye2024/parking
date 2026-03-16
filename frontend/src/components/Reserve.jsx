@@ -135,11 +135,7 @@ const Reserve = () => {
                             <span className="text-blue-300">무료 셔틀버스 운행</span>
                         </h1>
                         <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed">
-                            <span className="text-white font-bold">전화 문의</span> 043-298-1234 / 010-5078-4756<br className="sm:hidden" />
-                            <span className="hidden sm:inline"> · </span>1시간 500원 / 1일 최대 5,000원 <span className="text-sm">(0시 이후 초기화)</span>
-                        </p>
-                        <p className="text-base sm:text-lg text-slate-300 font-medium mt-1">
-                            무료 셔틀 · 출차 하실 때 차단기에서 결제 (아이파킹)
+                            <span className="text-white font-bold">전화 문의</span> 043-298-1234 / 010-5078-4756
                         </p>
                         <button
                             className="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-brand/30 hover:shadow-brand-light/40 transition-all duration-300 transform hover:-translate-y-0.5"
