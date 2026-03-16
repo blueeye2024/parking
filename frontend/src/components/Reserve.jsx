@@ -102,8 +102,9 @@ const Reserve = () => {
                             청주공항 반값 주차,<br />
                             <span className="text-blue-300">서비스는 프리미엄으로.</span>
                         </h1>
-                        <p className="text-lg sm:text-xl text-slate-300 font-medium">
-                            공항 주차장의 <span className="text-white font-bold">딱 절반 가격!</span> · 1시간 500원 / 1일 최대 5,000원 <span className="text-sm">(0시 이후 초기화됩니다.)</span>
+                        <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed">
+                            공항 주차장의 <span className="text-white font-bold">딱 절반 가격!</span><br className="sm:hidden" />
+                            <span className="hidden sm:inline"> · </span>1시간 500원 / 1일 최대 5,000원 <span className="text-sm">(0시 이후 초기화)</span>
                         </p>
                         <p className="text-base sm:text-lg text-slate-300 font-medium mt-1">
                             무료 셔틀 · 출차 하실 때 차단기에서 결제 (아이파킹)
@@ -124,7 +125,9 @@ const Reserve = () => {
                     hover:shadow-[0_12px_28px_-6px_rgba(239,68,68,0.25)] hover:-translate-y-2 hover:scale-[1.03] hover:border-red-300
                     transition-all duration-300 ease-out border-t-4 border-t-brand ring-1 ring-brand/10 relative overflow-hidden flex flex-col justify-center">
                         <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-extrabold px-2.5 py-1 rounded-full shadow-sm">50% OFF</div>
-                        <p className="text-sm font-medium text-slate-500 mb-3 group-hover:text-red-500 transition-colors duration-300">1일 최대 주차 요금 (1시간 500원, 0시 이후 초기화됩니다.)</p>
+                        <p className="text-sm font-medium text-slate-500 mb-3 group-hover:text-red-500 transition-colors duration-300">
+                            1일 최대 주차 요금<br className="hidden sm:block" /> <span className="text-xs">(1시간 500원, 0시 이후 초기화)</span>
+                        </p>
                         <p className="text-sm text-slate-400 line-through mb-1">공항 주차장 10,000원</p>
                         <p className="text-3xl font-extrabold text-brand group-hover:text-red-600 transition-colors duration-300">
                             5,000<span className="text-lg font-semibold text-slate-500 ml-1 group-hover:text-red-400 transition-colors duration-300">원</span>
