@@ -53,6 +53,12 @@ const Reserve = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!formData.car_number || !formData.name || !formData.phone || !formData.drop_off_time || !formData.pick_up_time || !formData.companions || !formData.flight_number || !formData.destination || !formData.password) {
+            setStatus({ type: 'error', message: '모든 필수 항목(* 표시)을 입력해주세요.' });
+            return;
+        }
+
         setLoading(true);
         setStatus({ type: '', message: '' });
 

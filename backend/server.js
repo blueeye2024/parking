@@ -83,9 +83,11 @@ app.post('/api/reservations', async (req, res) => {
 
   const handWashValue = hand_wash === 'Y' ? 'Y' : 'N';
 
-  if (!car_type || !car_number || !name || !phone || !drop_off_time || !pick_up_time || !password) {
-    return res.status(400).json({ error: 'Missing required fields' });
+  if (!car_number || !name || !phone || !drop_off_time || !pick_up_time || !companions || !flight_number || !destination || !password) {
+    return res.status(400).json({ error: '필수 입력 항목이 누락되었습니다.' });
   }
+
+  const finalCarType = car_type || '미입력';
 
   try {
     const saltRounds = 10;
@@ -102,7 +104,7 @@ app.post('/api/reservations', async (req, res) => {
       INSERT INTO reservations (car_type, car_number, name, phone, drop_off_time, pick_up_time, companions, flight_number, destination, memo, password, source_type, hand_wash, days, price)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'WEB', ?, ?, ?)
     `;
-    const values = [car_type, car_number, name, phone, drop_off_time, pick_up_time, companions || null, flight_number || null, destination || null, memo, hashedPassword, handWashValue, days, price];
+    const values = [finalCarType, car_number, name, phone, drop_off_time, pick_up_time, companions, flight_number, destination, memo, hashedPassword, handWashValue, days, price];
 
     const [result] = await pool.execute(query, values);
 
@@ -110,7 +112,7 @@ app.post('/api/reservations', async (req, res) => {
     res.status(201).json({
       message: 'Reservation created successfully',
       id: result.insertId,
-      reservation: { car_type, car_number, name, phone, drop_off_time, pick_up_time, companions, flight_number, destination, memo, days, price, hand_wash: handWashValue }
+      reservation: { car_type: finalCarType, car_number, name, phone, drop_off_time, pick_up_time, companions, flight_number, destination, memo, days, price, hand_wash: handWashValue }
     });
 
     // Format datetime for SMS (2026-03-05T14:00 → 2026-03-05 14:00)
