@@ -3,7 +3,7 @@ import { FaTag, FaBus, FaParking, FaShieldAlt, FaMapMarkerAlt, FaHandshake } fro
 
 const features = [
     { icon: FaTag, title: '공항 대비 50% 절약', desc: '공항 내 주차장 1일 10,000원, 저희는 1시간 500원, 1일 최대 5,000원(0시 이후 초기화)! 동일한 서비스, 절반의 비용으로 경험하세요.' },
-    { icon: FaBus, title: '신속한 셔틀 서비스', desc: '주차장에서 공항까지 무료 셔틀버스를 운행합니다. (운행 시간: 04:00 ~ 익일 01:00)' },
+    { icon: FaBus, title: '신속한 셔틀 서비스', desc: '주차장에서 공항까지 무료 셔틀버스를 운행합니다. (운행 시간: 04:00 ~ 새벽 01:00)' },
     { icon: FaParking, title: '넉넉한 주차 공간', desc: '자동차 400대를 동시에 수용할 수 있는 대규모 전용 주차장 완비.' },
     { icon: FaShieldAlt, title: '철저한 안전 관리', desc: '24시간 CCTV 및 무인 차단기 설치로 도난 예방. 운행 차량 종합보험 및 주차 배상 책임보험 가입 완료.' },
 ];
@@ -73,7 +73,7 @@ const AboutUs = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                     {[
                         { label: '이용 요금', value: '1시간 500원, 1일 최대 5,000원 (0시 이후 초기화 / 차단기 아이파킹 결제)' },
-                        { label: '셔틀 운행', value: '새벽 4시 ~ 익일 새벽 1시' },
+                        { label: '셔틀 운행', value: '새벽 4시 ~ 새벽 1시' },
                         { label: '문의 및 예약', value: '043-298-1234 / 010-5078-4756' },
                     ].map((item, i) => (
                         <div key={i} className="flex items-start gap-2">
