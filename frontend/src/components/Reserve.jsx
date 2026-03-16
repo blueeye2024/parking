@@ -226,7 +226,7 @@ const Reserve = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
                                     <label className={labelClass}>주차장 도착 시간 <span className="text-red-500">*</span></label>
-                                    <input type="datetime-local" className={inputClass} name="drop_off_time" value={formData.drop_off_time} onChange={handleChange} required />
+                                    <input type="datetime-local" className={inputClass} name="drop_off_time" value={formData.drop_off_time} onChange={handleChange} step="1800" required />
                                 </div>
                                 <div>
                                     <label className={labelClass}>공항 귀국 시간 <span className="text-red-500">*</span></label>
