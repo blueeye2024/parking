@@ -73,7 +73,7 @@ const AboutUs = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                     {[
                         { label: '이용 요금', value: '1시간 500원, 1일 최대 5,000원 (0시 이후 초기화 / 차단기 아이파킹 결제)' },
-                        { label: '셔틀 운행', value: '새벽 4시 ~ 새벽 1시' },
+                        { label: '셔틀 운행', value: '04:00 ~ 새벽 01시까지' },
                         { label: '문의 및 예약', value: '043-298-1234 / 010-5078-4756' },
                     ].map((item, i) => (
                         <div key={i} className="flex items-start gap-2">
