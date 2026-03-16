@@ -164,7 +164,7 @@ const Reserve = () => {
                                     { label: '연락처', value: completedReservation.phone },
                                     { label: '차량종류', value: completedReservation.car_type },
                                     { label: '차량번호', value: completedReservation.car_number },
-                                    { label: '맡기는 시간', value: formatDateTime(completedReservation.drop_off_time) },
+                                    { label: '주차장 도착 시간', value: formatDateTime(completedReservation.drop_off_time) },
                                     { label: '공항 귀국 시간', value: formatDateTime(completedReservation.pick_up_time) },
                                     { label: '동행인원', value: completedReservation.companions || '없음' },
                                     { label: '도착항공편', value: completedReservation.flight_number || '미기재' },
@@ -216,7 +216,7 @@ const Reserve = () => {
                             {/* Row 3: Times */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
-                                    <label className={labelClass}>차량 맡기는 시간</label>
+                                    <label className={labelClass}>주차장 도착 시간</label>
                                     <input type="datetime-local" className={inputClass} name="drop_off_time" value={formData.drop_off_time} onChange={handleChange} required />
                                 </div>
                                 <div>
