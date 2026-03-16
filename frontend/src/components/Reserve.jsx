@@ -258,16 +258,16 @@ const Reserve = () => {
                                     <input type="datetime-local" className={inputClass} name="drop_off_time" value={formData.drop_off_time} onChange={handleChange} onBlur={handleDropOffBlur} step="1800" required />
                                 </div>
                                 <div>
-                                    <label className={labelClass}>공항 귀국 시간 <span className="text-red-500">*</span></label>
-                                    <input type="datetime-local" className={inputClass} name="pick_up_time" value={formData.pick_up_time} onChange={handleChange} required />
+                                    <label className={labelClass}>셔틀탑승인원 <span className="text-red-500">*</span></label>
+                                    <input type="text" className={inputClass} name="companions" value={formData.companions} onChange={handleChange} placeholder="예: 2명" required />
                                 </div>
                             </div>
 
                             {/* Row 4: Travel Info */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                                 <div>
-                                    <label className={labelClass}>셔틀탑승인원 <span className="text-red-500">*</span></label>
-                                    <input type="text" className={inputClass} name="companions" value={formData.companions} onChange={handleChange} placeholder="예: 2명" required />
+                                    <label className={labelClass}>공항 귀국 시간 <span className="text-red-500">*</span></label>
+                                    <input type="datetime-local" className={inputClass} name="pick_up_time" value={formData.pick_up_time} onChange={handleChange} required />
                                 </div>
                                 <div>
                                     <label className={labelClass}>도착항공편 <span className="text-red-500">*</span></label>
