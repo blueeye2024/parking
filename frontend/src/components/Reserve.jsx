@@ -120,9 +120,9 @@ const Reserve = () => {
         <>
             <div className="space-y-8 animate-fade-in">
                 {/* Hero Section */}
-                <div className="relative overflow-hidden rounded-2xl min-h-[380px] flex-center flex-col text-center px-6 py-16">
+                <div className="relative overflow-hidden rounded-2xl min-h-[380px] flex-center flex-col text-center px-6 py-16 bg-white border-[3px] border-brand/30 shadow-sm">
                     {/* Background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-cyan-50 to-sky-100" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-brand/5" />
 
                     {/* Content */}
                     <div className="relative z-10 max-w-2xl mx-auto space-y-6">
