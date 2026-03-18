@@ -176,54 +176,6 @@ const Reserve = () => {
                     ))}
                 </div>
 
-                {/* Directions Guide */}
-                <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-slate-100 animate-slide-up mb-8">
-                    <div className="flex flex-col lg:flex-row gap-8 items-center">
-                        <div className="flex-1 space-y-5">
-                            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-                                📍 찾아오시는 길 안내
-                            </h3>
-                            <div className="bg-blue-50/50 rounded-2xl p-5 border border-blue-100">
-                                <p className="text-slate-700 leading-relaxed font-medium">
-                                    저희 주차장 진입로가 초행길이신 경우 다소 헷갈리실 수 있습니다.<br className="hidden sm:block" />
-                                    방문 시 네비게이션은 <span className="font-bold text-brand text-lg">티맵(T map)</span>이나 <span className="font-bold text-yellow-500 text-lg">카카오내비</span>를 이용하시면<br className="hidden lg:block" /> 가장 정확하고 수월하게 안내받으실 수 있습니다.
-                                </p>
-                                <div className="mt-4 flex items-start gap-2 text-sm text-red-600 font-semibold bg-red-50 p-3 rounded-xl border border-red-100">
-                                    <span className="text-lg leading-none">⚠️</span>
-                                    <span>네이버 지도(네비)는 주차장 진입로를 다르게 안내할 수 있어<br className="hidden sm:block" /> 사용을 피해주세요. (네이버 X)</span>
-                                </div>
-                            </div>
-
-                            <div className="text-sm text-slate-600 bg-slate-50 p-5 rounded-2xl border border-slate-100">
-                                <p className="font-bold text-slate-800 mb-3 text-base flex items-center gap-2">
-                                    📸 진입로 참고 사진
-                                </p>
-                                <ul className="space-y-3 font-medium">
-                                    <li className="flex gap-2.5">
-                                        <span className="text-brand font-bold w-4">1.</span>
-                                        <span className="flex-1">삼거리에서 <span className="text-brand font-bold bg-brand/10 px-1 rounded">오른쪽 좁은 언덕길(노란색 화살표)</span>로 올라오셔야 합니다.</span>
-                                    </li>
-                                    <li className="flex gap-2.5">
-                                        <span className="text-brand font-bold w-4">2.</span>
-                                        <span className="flex-1">언덕을 다 올라오시면 보이는 <span className="font-bold text-red-500 bg-red-50 px-1 rounded">반값 셔틀 주차장 플랜카드</span> 방향(좌회전)으로 진입해 주세요.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div className="flex-1 w-full flex flex-col sm:flex-row gap-4">
-                            <div className="flex-1 rounded-2xl overflow-hidden bg-slate-100 shadow-sm relative group aspect-[3/4] sm:aspect-auto sm:h-[340px]">
-                                <img src="/images/direction1.jpg" alt="진입로 안내 1 - 오른쪽 언덕길" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.target.src = 'https://placehold.co/400x600/f1f5f9/94a3b8?text=Road+Image+1'; }} />
-                                <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl pointer-events-none"></div>
-                            </div>
-                            <div className="flex-1 rounded-2xl overflow-hidden bg-slate-100 shadow-sm relative group aspect-[4/3] sm:aspect-auto sm:h-[340px]">
-                                <img src="/images/direction2.jpg" alt="진입로 안내 2 - 표지판 안내" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.target.src = 'https://placehold.co/600x400/f1f5f9/94a3b8?text=Road+Image+2'; }} />
-                                <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl pointer-events-none"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 {/* Reservation Form */}
                 <div id="reserve-form" className="bg-white rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-slate-100 animate-slide-up">
                     <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-8 tracking-tight">
