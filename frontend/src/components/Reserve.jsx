@@ -166,7 +166,7 @@ const Reserve = () => {
                     </div>
 
                     {/* Shuttle Card */}
-                    {[{ label: '무료 셔틀 운행', value: '04:00 ~ 새벽 01:00', unit: '' },
+                    {[{ label: '무료 셔틀 운행', value: '04:00 ~ 새벽 1시', unit: '' },
                     { label: '공항까지 소요시간', value: '7', unit: '분' }].map((item, i) => (
                         <div key={i} className={`group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center cursor-default
                         hover:shadow-[0_12px_28px_-6px_rgba(239,68,68,0.25)] hover:-translate-y-2 hover:scale-[1.03] hover:border-red-300
