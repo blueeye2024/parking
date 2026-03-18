@@ -122,11 +122,7 @@ const Reserve = () => {
                 {/* Hero Section */}
                 <div className="relative overflow-hidden rounded-2xl min-h-[380px] flex-center flex-col text-center px-6 py-16">
                     {/* Background */}
-                    <div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80")' }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-brand-dark/50 to-brand/40" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-brand-dark to-brand" />
 
                     {/* Content */}
                     <div className="relative z-10 max-w-2xl mx-auto space-y-6">
