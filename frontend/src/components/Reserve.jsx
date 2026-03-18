@@ -122,16 +122,16 @@ const Reserve = () => {
                 {/* Hero Section */}
                 <div className="relative overflow-hidden rounded-2xl min-h-[380px] flex-center flex-col text-center px-6 py-16">
                     {/* Background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-brand-dark to-brand" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-cyan-50 to-sky-100" />
 
                     {/* Content */}
                     <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
                             청주공항 반값 주차,<br />
-                            <span className="text-blue-300">무료 셔틀버스 운행</span>
+                            <span className="text-brand">무료 셔틀버스 운행</span>
                         </h1>
-                        <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed">
-                            <span className="text-white font-bold">전화 문의</span> 043-298-1234<br />
+                        <p className="text-lg sm:text-xl text-slate-600 font-medium leading-relaxed">
+                            <span className="text-slate-800 font-bold">전화 문의</span> 043-298-1234<br />
                             010-5078-4756<br />
                             네비 : 셔틀주차장
                         </p>
