@@ -135,7 +135,8 @@ const Reserve = () => {
                             <span className="text-blue-300">무료 셔틀버스 운행</span>
                         </h1>
                         <p className="text-lg sm:text-xl text-slate-300 font-medium leading-relaxed">
-                            <span className="text-white font-bold">전화 문의</span> 043-298-1234 / 010-5078-4756<br />
+                            <span className="text-white font-bold">전화 문의</span> 043-298-1234<br />
+                            010-5078-4756<br />
                             네비 : 셔틀주차장
                         </p>
                         <button
