@@ -202,7 +202,7 @@ const Reserve = () => {
                                     { label: '예약자명', value: completedReservation.name },
                                     { label: '연락처', value: completedReservation.phone },
                                     { label: '차량종류', value: completedReservation.car_type },
-                                    { label: '차량번호', value: completedReservation.car_number },
+                                    { label: '차량번호(뒷자리)', value: completedReservation.car_number },
                                     { label: '주차장 도착 시간', value: formatDateTime(completedReservation.drop_off_time) },
                                     { label: '공항 귀국 시간', value: formatDateTime(completedReservation.pick_up_time) },
                                     { label: '셔틀탑승인원', value: completedReservation.companions || '없음' },
@@ -235,8 +235,8 @@ const Reserve = () => {
                                     <input type="text" className={inputClass} name="car_type" value={formData.car_type} onChange={handleChange} placeholder="예: 소나타, 산타페" />
                                 </div>
                                 <div>
-                                    <label className={labelClass}>차량번호</label>
-                                    <input type="text" className={inputClass} name="car_number" value={formData.car_number} onChange={handleCarNumberChange} placeholder="예: 12가3456" required />
+                                    <label className={labelClass}>차량번호(뒷자리)</label>
+                                    <input type="text" className={inputClass} name="car_number" value={formData.car_number} onChange={handleCarNumberChange} placeholder="예: 3456" required />
                                 </div>
                             </div>
 
