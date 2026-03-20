@@ -10,6 +10,8 @@
 
   /* 2. 전체 페이지 기본 스타일 세팅 */
   html {
+    font-size: 112.5%;
+    /* 16px -> 18px (+2px) */
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
