@@ -89,7 +89,7 @@ const AboutUs = () => {
                 <h3 className="text-xl font-bold text-brand-dark flex items-center gap-2 mb-6">
                     📍 찾아오시는 길 안내
                 </h3>
-                <div className="flex flex-col lg:flex-row gap-8 items-center">
+                <div className="flex flex-col lg:flex-row gap-8 items-stretch">
                     <div className="flex-1 space-y-5">
                         <div className="bg-blue-50/50 rounded-2xl p-5 border border-blue-100">
                             <p className="text-slate-700 leading-relaxed font-medium">
@@ -120,11 +120,11 @@ const AboutUs = () => {
                     </div>
 
                     <div className="flex-1 w-full flex flex-col sm:flex-row gap-4">
-                        <div className="flex-1 rounded-2xl overflow-hidden bg-slate-100 shadow-sm relative group aspect-[3/4] sm:aspect-auto sm:h-[340px]">
+                        <div className="flex-1 rounded-2xl overflow-hidden bg-slate-100 shadow-sm relative group aspect-[3/4] sm:aspect-auto">
                             <img src="/images/direction1.png" alt="진입로 안내 1 - 오른쪽 언덕길" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.target.src = 'https://placehold.co/400x600/f1f5f9/94a3b8?text=Road+Image+1'; }} />
                             <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl pointer-events-none"></div>
                         </div>
-                        <div className="flex-1 rounded-2xl overflow-hidden bg-slate-100 shadow-sm relative group aspect-[4/3] sm:aspect-auto sm:h-[340px]">
+                        <div className="flex-1 rounded-2xl overflow-hidden bg-slate-100 shadow-sm relative group aspect-[4/3] sm:aspect-auto">
                             <img src="/images/direction2.png" alt="진입로 안내 2 - 표지판 안내" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.target.src = 'https://placehold.co/600x400/f1f5f9/94a3b8?text=Road+Image+2'; }} />
                             <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl pointer-events-none"></div>
                         </div>
