@@ -19,6 +19,7 @@ const Reserve = () => {
 
     const [status, setStatus] = useState({ type: '', message: '' });
     const [loading, setLoading] = useState(false);
+    const [completedReservation, setCompletedReservation] = useState(null);
     const [showWashModal, setShowWashModal] = useState(false);
     const [agreed, setAgreed] = useState(false);
 

@@ -13,4 +13,4 @@ npm install --legacy-peer-deps
 npm run build
 
 echo "blueeye0037!" | sudo -S systemctl restart nginx
-echo "✅ 배포 완료: http://parking.giupplus.com:9101"
+echo "✅ 배포 완료: https://parking.giupplus.com"
