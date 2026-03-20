@@ -148,13 +148,8 @@ const Reserve = () => {
                             </h1>
                         </div>
 
-                        {/* Arrow and Distance */}
-                        <div className="flex flex-col items-center space-y-2">
-                            <div className="text-red-600 animate-pulse">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 sm:h-24 sm:w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                                </svg>
-                            </div>
+                        {/* Distance/Shuttle Text */}
+                        <div className="flex flex-col items-center">
                             <p className="text-2xl sm:text-4xl font-black text-red-600 tracking-tight">예약 시 셔틀 무료 운행</p>
                         </div>
 
