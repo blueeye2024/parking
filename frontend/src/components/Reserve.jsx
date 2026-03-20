@@ -21,6 +21,8 @@ const Reserve = () => {
     const [loading, setLoading] = useState(false);
     const [completedReservation, setCompletedReservation] = useState(null);
     const [showWashModal, setShowWashModal] = useState(false);
+    const [agreed, setAgreed] = useState(false);
+    const [showAgreedDetails, setShowAgreedDetails] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -85,6 +87,11 @@ const Reserve = () => {
             return;
         }
 
+        if (!agreed) {
+            setStatus({ type: 'error', message: '개인정보 수집 및 이용에 동의해야 예약이 가능합니다.' });
+            return;
+        }
+
         const dropOffMinutes = new Date(formData.drop_off_time).getMinutes();
         if (dropOffMinutes % 30 !== 0) {
             setStatus({ type: 'error', message: '주차장 도착 시간은 30분 단위(00분, 30분)로만 예약 가능합니다.' });
@@ -102,6 +109,7 @@ const Reserve = () => {
                 car_type: '', car_number: '', name: '', phone: '',
                 drop_off_time: '', pick_up_time: '', companions: '', flight_number: '', destination: '', memo: '', password: '', hand_wash: 'N'
             });
+            setAgreed(false);
         } catch (err) {
             console.error(err);
             setStatus({
@@ -307,6 +315,47 @@ const Reserve = () => {
                                 <textarea className={`${inputClass} min-h-[120px] resize-y py-3`} name="memo" value={formData.memo} onChange={handleChange} placeholder="추가 요청사항을 적어주세요" />
                             </div>
 
+                            {/* Agreement Section */}
+                            <div className="space-y-3 pt-4 border-t border-slate-100">
+                                <div className="flex items-center justify-between">
+                                    <label className="flex items-center gap-2 cursor-pointer group">
+                                        <input
+                                            type="checkbox"
+                                            checked={agreed}
+                                            onChange={(e) => setAgreed(e.target.checked)}
+                                            className="w-5 h-5 rounded border-slate-300 text-brand focus:ring-brand cursor-pointer"
+                                            required
+                                        />
+                                        <span className="text-sm font-semibold text-slate-700 group-hover:text-slate-900 transition-colors">
+                                            개인정보 수집 및 이용에 동의합니다 <span className="text-brand">(필수)</span>
+                                        </span>
+                                    </label>
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowAgreedDetails(!showAgreedDetails)}
+                                        className="text-xs font-bold text-slate-400 hover:text-brand border border-slate-200 hover:border-brand px-2.5 py-1 rounded-lg transition-all"
+                                    >
+                                        {showAgreedDetails ? '접기' : '상세보기'}
+                                    </button>
+                                </div>
+
+                                {showAgreedDetails && (
+                                    <div className="bg-slate-50 rounded-xl p-4 text-xs text-slate-600 leading-relaxed max-h-40 overflow-y-auto custom-scrollbar border border-slate-100 animate-slide-up">
+                                        <p className="font-bold mb-2">1. 수집하는 개인정보 항목</p>
+                                        <p className="mb-3">성명, 연락처, 차량번호, 차량종류</p>
+
+                                        <p className="font-bold mb-2">2. 개인정보 수집 및 이용 목적</p>
+                                        <p className="mb-3">주차대행 예약 관리, 서비스 안내 및 SMS 발송</p>
+
+                                        <p className="font-bold mb-2">3. 개인정보의 보유 및 이용기간</p>
+                                        <p className="mb-3">서비스 완료 후 1년 (관계 법령에 따라 보존이 필요한 경우 해당 기간 보관)</p>
+
+                                        <p className="font-bold mb-2">4. 동의 거부권 및 불이익</p>
+                                        <p>고객님은 개인정보 수집 및 이용에 동의하지 않을 권리가 있으나, 동의 거부 시 예약 서비스 이용이 제한될 수 있습니다.</p>
+                                    </div>
+                                )}
+                            </div>
+
                             {/* Submit */}
                             <div>
                                 <button
@@ -316,9 +365,6 @@ const Reserve = () => {
                                 >
                                     {loading ? '예약 중...' : '예약하기'}
                                 </button>
-                                <p className="text-center text-sm text-slate-500 mt-4 font-medium">
-                                    예약 진행 시 개인정보 수집 및 이용에 동의하는 것으로 간주합니다.
-                                </p>
                             </div>
                         </form>
                     )}
