@@ -171,13 +171,17 @@ const Reserve = () => {
                         </div>
 
                         {/* Description & Contact */}
-                        <div className="space-y-4">
-                            <p className="text-xl sm:text-3xl font-extrabold text-black/80">
-                                <span className="bg-black text-[#FFE200] px-3 py-1 rounded inline-block mb-2 sm:mb-0 mr-2 shadow-lg">전화 문의</span>
-                                <span className="text-blue-700 underline decoration-blue-700/30 underline-offset-8">043-298-1234</span>
-                                <span className="mx-3 hidden sm:inline text-black/20">|</span>
-                                <span className="text-blue-700 underline decoration-blue-700/30 underline-offset-8 mt-2 sm:mt-0 inline-block sm:inline">010-5078-4756</span>
-                            </p>
+                        <div className="space-y-6">
+                            <div className="flex flex-col items-center gap-3">
+                                <div className="flex items-center gap-3 text-xl sm:text-3xl font-extrabold text-black/80">
+                                    <span className="bg-black text-[#FFE200] px-3 py-1 rounded shadow-lg">상담</span>
+                                    <span className="text-blue-700 underline decoration-blue-700/30 underline-offset-8">043-298-1234</span>
+                                </div>
+                                <div className="flex items-center gap-3 text-xl sm:text-3xl font-extrabold text-black/80">
+                                    <span className="bg-red-600 text-white px-3 py-1 rounded shadow-lg">예약</span>
+                                    <span className="text-blue-700 underline decoration-blue-700/30 underline-offset-8">010-5078-4756</span>
+                                </div>
+                            </div>
                             <p className="text-lg sm:text-2xl font-bold text-slate-800/70 italic">
                                 네비 검색 : <span className="text-black not-italic border-b-2 border-black/20 pb-0.5">셔틀주차장</span>
                             </p>
