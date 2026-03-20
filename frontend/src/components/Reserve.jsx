@@ -346,7 +346,7 @@ const Reserve = () => {
                                         <section>
                                             <h4 className="font-bold text-slate-900 mb-2 underline underline-offset-4 decoration-brand/30">[ 이용약관 및 사고처리 규정 ]</h4>
                                             <div className="space-y-2">
-                                                <p>1. <strong>배상책임:</strong> 본 업체는 대리운전 보험 및 주차장 배상 책임 보험에 가입되어 있습니다. </p>
+                                                <p>1. <strong>배상책임:</strong> 본 업체는 주차장 배상 책임 보험에 가입되어 있습니다. </p>
                                                 <p>2. <strong>사고 발생 시:</strong> 당사 직원의 과실로 인한 사고 발생 시 가입된 보험 한도 내에서 성실히 보상 처리해 드립니다.</p>
                                                 <p>3. <strong>면책 조항:</strong> 다음의 경우 당사는 책임을 지지 않습니다.</p>
                                                 <ul className="list-disc ml-4 space-y-1">
