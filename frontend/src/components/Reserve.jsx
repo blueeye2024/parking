@@ -126,27 +126,57 @@ const Reserve = () => {
     return (
         <>
             <div className="space-y-8 animate-fade-in">
-                {/* Hero Section */}
-                <div className="relative overflow-hidden rounded-2xl min-h-[380px] flex-center flex-col text-center px-6 py-16 bg-white border-[3px] border-brand/30 shadow-sm">
-                    {/* Background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-brand/5" />
+                {/* Hero Section - Redesigned to match physical sign photo */}
+                <div className="relative overflow-hidden rounded-3xl min-h-[420px] flex items-center justify-center px-6 py-16 bg-[#FFE200] border-[6px] border-black/5 shadow-2xl group transition-all duration-500">
+                    {/* Decorative Elements */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32" />
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/5 rounded-full blur-3xl -ml-32 -mb-32" />
 
-                    {/* Content */}
-                    <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
-                            청주공항 반값 주차,<br />
-                            <span className="text-brand">무료 셔틀버스 운행</span>
-                        </h1>
-                        <p className="text-lg sm:text-xl text-slate-600 font-medium leading-relaxed">
-                            <span className="text-slate-800 font-bold">전화 문의</span> 043-298-1234<br />
-                            010-5078-4756<br />
-                            네비 : 셔틀주차장
-                        </p>
+                    <div className="relative z-10 max-w-4xl w-full mx-auto flex flex-col items-center text-center space-y-8">
+                        {/* Main Title Row */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2">
+                            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-[900] text-black tracking-tighter leading-none flex items-center gap-4">
+                                청주공항
+                            </h1>
+                            <div className="relative">
+                                <span className="inline-block bg-red-600 text-white text-2xl sm:text-4xl font-black px-4 py-2 rounded-lg transform -rotate-12 shadow-md animate-bounce-subtle">
+                                    반값
+                                </span>
+                            </div>
+                            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-[900] text-black tracking-tighter leading-none">
+                                셔틀 주차장
+                            </h1>
+                        </div>
+
+                        {/* Arrow and Distance */}
+                        <div className="flex flex-col items-center space-y-2">
+                            <div className="text-red-600 animate-pulse">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 sm:h-24 sm:w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                </svg>
+                            </div>
+                            <p className="text-2xl sm:text-4xl font-black text-red-600 tracking-tight">예약 시 셔틀 무료 운행</p>
+                        </div>
+
+                        {/* Description & Contact */}
+                        <div className="space-y-4">
+                            <p className="text-xl sm:text-3xl font-extrabold text-black/80">
+                                <span className="bg-black text-[#FFE200] px-3 py-1 rounded inline-block mb-2 sm:mb-0 mr-2 shadow-lg">전화 문의</span>
+                                <span className="text-blue-700 underline decoration-blue-700/30 underline-offset-8">043-298-1234</span>
+                                <span className="mx-3 hidden sm:inline text-black/20">|</span>
+                                <span className="text-blue-700 underline decoration-blue-700/30 underline-offset-8 mt-2 sm:mt-0 inline-block sm:inline">010-5078-4756</span>
+                            </p>
+                            <p className="text-lg sm:text-2xl font-bold text-slate-800/70 italic">
+                                네비 검색 : <span className="text-black not-italic border-b-2 border-black/20 pb-0.5">셔틀주차장</span>
+                            </p>
+                        </div>
+
                         <button
-                            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-brand/30 hover:shadow-brand-light/40 transition-all duration-300 transform hover:-translate-y-0.5"
+                            className="group relative inline-flex items-center gap-3 bg-black hover:bg-slate-900 text-white px-10 py-5 rounded-2xl font-black text-xl sm:text-2xl shadow-2xl transition-all duration-300 transform hover:-translate-y-1 active:scale-95"
                             onClick={() => document.getElementById('reserve-form').scrollIntoView({ behavior: 'smooth' })}
                         >
                             지금 바로 예약하기
+                            <span className="transform group-hover:translate-x-1 transition-transform">→</span>
                         </button>
                     </div>
                 </div>
