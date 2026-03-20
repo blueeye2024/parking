@@ -34,6 +34,23 @@ const Reserve = () => {
         setFormData(prev => ({ ...prev, car_number: filtered }));
     };
 
+    // Companions: numbers only
+    const handleCompanionsChange = (e) => {
+        const filtered = e.target.value.replace(/[^0-9]/g, '');
+        setFormData(prev => ({ ...prev, companions: filtered }));
+    };
+
+    // Pick-up time change: validate it's not before drop-off time
+    const handlePickUpTimeChange = (e) => {
+        const value = e.target.value;
+        if (formData.drop_off_time && value && value <= formData.drop_off_time) {
+            alert('공항 귀국 시간은 주차장 도착 시간보다 이전일 수 없습니다.\n귀국 시간을 다시 선택해주세요.');
+            setFormData(prev => ({ ...prev, pick_up_time: '' }));
+            return;
+        }
+        setFormData(prev => ({ ...prev, pick_up_time: value }));
+    };
+
     // Phone auto-format: numbers only → auto-insert dashes (010-1234-5678)
     const handlePhoneChange = (e) => {
         const raw = e.target.value.replace(/[^0-9]/g, '').slice(0, 11);
@@ -264,7 +281,7 @@ const Reserve = () => {
                                 </div>
                                 <div>
                                     <label className={labelClass}>차량번호(뒷자리)</label>
-                                    <input type="text" className={inputClass} name="car_number" value={formData.car_number} onChange={handleCarNumberChange} placeholder="예: 3456" required />
+                                    <input type="text" className={inputClass} name="car_number" value={formData.car_number} onChange={handleCarNumberChange} placeholder="예: 3456" maxLength={20} required />
                                 </div>
                             </div>
 
@@ -272,11 +289,11 @@ const Reserve = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
                                     <label className={labelClass}>예약자명</label>
-                                    <input type="text" className={inputClass} name="name" value={formData.name} onChange={handleChange} placeholder="이름을 입력해주세요" required />
+                                    <input type="text" className={inputClass} name="name" value={formData.name} onChange={handleChange} placeholder="이름을 입력해주세요" maxLength={50} required />
                                 </div>
                                 <div>
                                     <label className={labelClass}>연락처 <span className="text-red-500">*</span></label>
-                                    <input type="tel" className={inputClass} name="phone" value={formData.phone} onChange={handlePhoneChange} placeholder="숫자만 입력 (자동 하이픈)" required />
+                                    <input type="tel" className={inputClass} name="phone" value={formData.phone} onChange={handlePhoneChange} placeholder="숫자만 입력 (자동 하이픈)" maxLength={20} required />
                                 </div>
                             </div>
 
@@ -288,7 +305,7 @@ const Reserve = () => {
                                 </div>
                                 <div>
                                     <label className={labelClass}>셔틀탑승인원 <span className="text-red-500">*</span></label>
-                                    <input type="text" className={inputClass} name="companions" value={formData.companions} onChange={handleChange} placeholder="예: 2명" required />
+                                    <input type="text" inputMode="numeric" className={inputClass} name="companions" value={formData.companions} onChange={handleCompanionsChange} placeholder="예: 2" maxLength={10} required />
                                 </div>
                             </div>
 
@@ -296,15 +313,15 @@ const Reserve = () => {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                                 <div>
                                     <label className={labelClass}>공항 귀국 시간 <span className="text-red-500">*</span></label>
-                                    <input type="datetime-local" className={inputClass} name="pick_up_time" value={formData.pick_up_time} onChange={handleChange} required />
+                                    <input type="datetime-local" className={inputClass} name="pick_up_time" value={formData.pick_up_time} onChange={handlePickUpTimeChange} required />
                                 </div>
                                 <div>
                                     <label className={labelClass}>도착항공편 <span className="text-red-500">*</span></label>
-                                    <input type="text" className={inputClass} name="flight_number" value={formData.flight_number} onChange={handleChange} placeholder="예: 이스타, KE1234" required />
+                                    <input type="text" className={inputClass} name="flight_number" value={formData.flight_number} onChange={handleChange} placeholder="예: 이스타, KE1234" maxLength={100} required />
                                 </div>
                                 <div>
                                     <label className={labelClass}>여행지 <span className="text-red-500">*</span></label>
-                                    <input type="text" className={inputClass} name="destination" value={formData.destination} onChange={handleChange} placeholder="예: 제주도, 오사카" required />
+                                    <input type="text" className={inputClass} name="destination" value={formData.destination} onChange={handleChange} placeholder="예: 제주도, 오사카" maxLength={100} required />
                                 </div>
                             </div>
 
