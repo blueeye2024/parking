@@ -172,13 +172,16 @@ const Reserve = () => {
 
                         {/* Description & Contact */}
                         <div className="space-y-6">
-                            <div className="flex flex-col items-center gap-3">
-                                <div className="flex items-center gap-3 text-xl sm:text-3xl font-extrabold text-black/80">
-                                    <span className="bg-black text-[#FFE200] px-3 py-1 rounded shadow-lg">상담</span>
+                            <div className="mx-auto max-w-max">
+                                <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-4 items-center text-xl sm:text-3xl font-extrabold text-black/80">
+                                    <div className="flex justify-center">
+                                        <span className="bg-black text-[#FFE200] px-3 py-1 rounded shadow-lg min-w-[64px] sm:min-w-[90px] text-center">상담</span>
+                                    </div>
                                     <span className="text-blue-700 underline decoration-blue-700/30 underline-offset-8">043-298-1234</span>
-                                </div>
-                                <div className="flex items-center gap-3 text-xl sm:text-3xl font-extrabold text-black/80">
-                                    <span className="bg-red-600 text-white px-3 py-1 rounded shadow-lg">예약</span>
+
+                                    <div className="flex justify-center">
+                                        <span className="bg-red-600 text-white px-3 py-1 rounded shadow-lg min-w-[64px] sm:min-w-[90px] text-center">예약</span>
+                                    </div>
                                     <span className="text-blue-700 underline decoration-blue-700/30 underline-offset-8">010-5078-4756</span>
                                 </div>
                             </div>
