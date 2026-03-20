@@ -19,10 +19,8 @@ const Reserve = () => {
 
     const [status, setStatus] = useState({ type: '', message: '' });
     const [loading, setLoading] = useState(false);
-    const [completedReservation, setCompletedReservation] = useState(null);
     const [showWashModal, setShowWashModal] = useState(false);
     const [agreed, setAgreed] = useState(false);
-    const [showAgreedDetails, setShowAgreedDetails] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -316,8 +314,8 @@ const Reserve = () => {
                             </div>
 
                             {/* Agreement Section */}
-                            <div className="space-y-3 pt-4 border-t border-slate-100">
-                                <div className="flex items-center justify-between">
+                            <div className="space-y-4 pt-6 border-t border-slate-100">
+                                <div className="flex items-center">
                                     <label className="flex items-center gap-2 cursor-pointer group">
                                         <input
                                             type="checkbox"
@@ -326,34 +324,45 @@ const Reserve = () => {
                                             className="w-5 h-5 rounded border-slate-300 text-brand focus:ring-brand cursor-pointer"
                                             required
                                         />
-                                        <span className="text-sm font-semibold text-slate-700 group-hover:text-slate-900 transition-colors">
-                                            개인정보 수집 및 이용에 동의합니다 <span className="text-brand">(필수)</span>
+                                        <span className="text-sm font-bold text-slate-800 group-hover:text-black transition-colors">
+                                            개인정보 수집 및 이용 & 이용약관에 동의합니다 <span className="text-brand">(필수)</span>
                                         </span>
                                     </label>
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowAgreedDetails(!showAgreedDetails)}
-                                        className="text-xs font-bold text-slate-400 hover:text-brand border border-slate-200 hover:border-brand px-2.5 py-1 rounded-lg transition-all"
-                                    >
-                                        {showAgreedDetails ? '접기' : '상세보기'}
-                                    </button>
                                 </div>
 
-                                {showAgreedDetails && (
-                                    <div className="bg-slate-50 rounded-xl p-4 text-xs text-slate-600 leading-relaxed max-h-40 overflow-y-auto custom-scrollbar border border-slate-100 animate-slide-up">
-                                        <p className="font-bold mb-2">1. 수집하는 개인정보 항목</p>
-                                        <p className="mb-3">성명, 연락처, 차량번호, 차량종류</p>
+                                <div className="bg-slate-50 rounded-xl p-5 text-xs text-slate-600 leading-relaxed max-h-60 overflow-y-auto custom-scrollbar border border-slate-100 shadow-inner">
+                                    <div className="space-y-4">
+                                        <section>
+                                            <h4 className="font-bold text-slate-900 mb-2 underline underline-offset-4 decoration-brand/30">[ 개인정보 수집 및 이용 동의 ]</h4>
+                                            <p className="mb-1">본 업체는 원활한 서비스 제공을 위해 아래와 같이 개인정보를 수집 및 이용합니다.</p>
+                                            <ul className="list-disc ml-4 space-y-1">
+                                                <li><strong>수집 목적:</strong> 예약 확인 및 관리, 성명({formData.name || '미기재'}), 연락처({formData.phone || '미기재'}), 차량번호({formData.car_number || '미기재'}), 서비스 안내 SMS 발송</li>
+                                                <li><strong>보유 기간:</strong> 서비스 완료 후 1년간 보관 (부정이용 방지 및 사후 관리 목적)</li>
+                                                <li><strong>동의 거부:</strong> 귀하는 동의를 거부할 수 있으나, 거부 시 예약 서비스 이용이 불가합니다.</li>
+                                            </ul>
+                                        </section>
 
-                                        <p className="font-bold mb-2">2. 개인정보 수집 및 이용 목적</p>
-                                        <p className="mb-3">주차대행 예약 관리, 서비스 안내 및 SMS 발송</p>
+                                        <section>
+                                            <h4 className="font-bold text-slate-900 mb-2 underline underline-offset-4 decoration-brand/30">[ 이용약관 및 사고처리 규정 ]</h4>
+                                            <div className="space-y-2">
+                                                <p>1. <strong>배상책임:</strong> 본 업체는 대리운전 보험 및 주차장 배상 책임 보험에 가입되어 있습니다. </p>
+                                                <p>2. <strong>사고 발생 시:</strong> 당사 직원의 과실로 인한 사고 발생 시 가입된 보험 한도 내에서 성실히 보상 처리해 드립니다.</p>
+                                                <p>3. <strong>면책 조항:</strong> 다음의 경우 당사는 책임을 지지 않습니다.</p>
+                                                <ul className="list-disc ml-4 space-y-1">
+                                                    <li>차량 내 보관된 귀중품(현금, 유가증권 등)의 도난 및 분실 (반드시 본인이 직접 관리하셔야 합니다)</li>
+                                                    <li>차량 자체의 결함으로 인한 고장(배터리 방전, 기계적 결함 등)</li>
+                                                    <li>천재지변으로 인한 손상 (우박, 낙뢰, 지진 등)</li>
+                                                    <li>차량 인수 전부터 발생되어 있던 손상이나 스크래치</li>
+                                                </ul>
+                                                <p>4. <strong>차량 인수 및 인도:</strong> 차량 인수 시 담당자와 함께 차량 상태를 확인해 주시기 바랍니다. 인도 완료 후 발견된 외관 손상에 대해서는 이의 제기가 어려울 수 있습니다.</p>
+                                            </div>
+                                        </section>
 
-                                        <p className="font-bold mb-2">3. 개인정보의 보유 및 이용기간</p>
-                                        <p className="mb-3">서비스 완료 후 1년 (관계 법령에 따라 보존이 필요한 경우 해당 기간 보관)</p>
-
-                                        <p className="font-bold mb-2">4. 동의 거부권 및 불이익</p>
-                                        <p>고객님은 개인정보 수집 및 이용에 동의하지 않을 권리가 있으나, 동의 거부 시 예약 서비스 이용이 제한될 수 있습니다.</p>
+                                        <section className="text-[10px] text-slate-400 border-t border-slate-200 pt-2">
+                                            ※ 위에 명시된 {formData.name || '예약자'}님의 정보는 안전하게 관리되며, 타 목적으로 절대 사용되지 않습니다.
+                                        </section>
                                     </div>
-                                )}
+                                </div>
                             </div>
 
                             {/* Submit */}
