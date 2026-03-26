@@ -72,7 +72,7 @@ const AboutUs = () => {
                 <h3 className="text-xl font-bold text-brand-dark">이용 안내 (Information)</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                     {[
-                        { label: '이용 요금', value: '1시간 500원, 1일 최대 5,000원 (0시 이후 초기화 / 차단기 아이파킹 결제)' },
+                        { label: '이용 요금', value: '1시간 500원, 1일 최대 5,000원 (0시 이후 초기화)' },
                         { label: '셔틀 운행', value: '04:00 ~ 새벽 1시까지' },
                         { label: '문의 및 예약', value: '043-298-1234 / 010-5078-4756' },
                     ].map((item, i) => (
@@ -113,7 +113,7 @@ const AboutUs = () => {
                                 </li>
                                 <li className="flex gap-2.5">
                                     <span className="text-brand font-bold w-4">2.</span>
-                                    <span className="flex-1">언덕을 다 올라오시면 보이는 <span className="font-bold text-red-500 bg-red-50 px-1 rounded">반값 셔틀 주차장 플랜카드</span> 방향(좌회전)으로 진입해 주세요.</span>
+                                    <span className="flex-1">언덕을 다 올라오시면 보이는 <span className="font-bold text-red-500 bg-red-50 px-1 rounded">반값 셔틀 주차장 플랜카드</span> 방향(우회전)으로 진입해 주세요.</span>
                                 </li>
                             </ul>
                         </div>

@@ -144,10 +144,10 @@ const Reserve = () => {
         <>
             <div className="space-y-8 animate-fade-in">
                 {/* Hero Section - Redesigned to match physical sign photo */}
-                <div className="relative overflow-hidden rounded-3xl min-h-[420px] flex items-center justify-center px-6 py-16 bg-[#FFE200] border-[6px] border-black/5 shadow-2xl group transition-all duration-500">
+                <div className="relative overflow-hidden rounded-3xl min-h-[420px] flex items-center justify-center px-6 py-16 group transition-all duration-500">
                     {/* Decorative Elements */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32" />
-                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/5 rounded-full blur-3xl -ml-32 -mb-32" />
+                    <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full -ml-32 -mb-32" />
 
                     <div className="relative z-10 max-w-4xl w-full mx-auto flex flex-col items-center text-center space-y-8">
                         {/* Main Title Row */}
