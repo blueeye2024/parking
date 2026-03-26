@@ -167,7 +167,7 @@ const Reserve = () => {
 
                         {/* Distance/Shuttle Text */}
                         <div className="flex flex-col items-center">
-                            <p className="text-2xl sm:text-4xl font-black text-red-600 tracking-tight">예약 시 셔틀 무료 운행</p>
+                            <p className="text-2xl sm:text-4xl font-black text-red-600 tracking-tight">예약시 셔틀 무료 운행</p>
                         </div>
 
                         {/* Description & Contact */}
