@@ -30,7 +30,7 @@ const AboutUs = () => {
                 </p>
                 <p className="text-slate-600 leading-relaxed mt-2">
                     <strong>'청주공항 반값 셔틀주차장'</strong>은 공항 이용객들의 편의를 위해 탄생한 실속형 주차 서비스입니다.
-                    공항에서 단 7분 거리(약 5km)에 위치하여, 합리적인 가격과 안전한 보안 시설로 고객님의 소중한 차량을 관리해 드립니다.
+                    공항에서 단 7분 거리(약 4km)에 위치하여, 합리적인 가격과 안전한 보안 시설로 고객님의 소중한 차량을 관리해 드립니다.
                 </p>
             </div>
 
@@ -74,7 +74,8 @@ const AboutUs = () => {
                     {[
                         { label: '이용 요금', value: '1시간 500원, 1일 최대 5,000원 (0시 이후 초기화)' },
                         { label: '셔틀 운행', value: '04:00 ~ 새벽 1시까지' },
-                        { label: '문의 및 예약', value: '043-298-1234 / 010-5078-4756' },
+                        { label: '문의', value: '043-298-1234' },
+                        { label: '예약', value: '010-5078-4756' },
                     ].map((item, i) => (
                         <div key={i} className="flex items-start gap-2">
                             <span className="font-semibold text-slate-700 flex-shrink-0">{item.label}</span>
