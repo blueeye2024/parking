@@ -16,9 +16,9 @@ async function sendSMS(phone, msgText) {
     const senddate = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
 
     const params = new URLSearchParams();
-    params.append('sms_id', 'leeyw94');
-    params.append('sms_pw', 'blueeye0037!');
-    params.append('callback', '042-484-1418');
+    params.append('sms_id', 'pjr591014');
+    params.append('sms_pw', 'p13098392g!');
+    params.append('callback', '043-211-8555');
     params.append('senddate', senddate);
     params.append('return_data', '');
     params.append('use_mms', 'N');
